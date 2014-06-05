@@ -8,5 +8,6 @@ from .shop import *
 def register():
     Pool.register(
         GalateaWebSite,
+        GalateaUser,
         SaleShop,
         module='galatea_esale', type_='model')

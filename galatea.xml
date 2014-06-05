@@ -9,5 +9,17 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="inherit" ref="galatea.website_view_form"/>
             <field name="name">website_form</field> 
         </record>
+
+        <!-- User -->
+        <record model="ir.ui.view" id="galatea_user_form2">
+            <field name="model">galatea.user</field>
+            <field name="inherit" ref="galatea.galatea_user_form2"/>
+            <field name="name">galatea_user_form</field> 
+        </record>
+        <record model="ir.ui.view" id="galatea_user_tree">
+            <field name="model">galatea.user</field>
+            <field name="inherit" ref="galatea.galatea_user_tree"/>
+            <field name="name">galatea_user_tree</field> 
+        </record>
     </data>
 </tryton>

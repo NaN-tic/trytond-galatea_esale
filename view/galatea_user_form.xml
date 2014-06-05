@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- This file is part of galatea_esale module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license types. -->
+<data>
+    <xpath expr="/form/field[@name=&quot;timezone&quot;]" position="after">
+        <label name="invoice_address"/>
+        <field name="invoice_address"/>
+        <label name="shipment_address"/>
+        <field name="shipment_address"/>
+    </xpath>
+</data>
