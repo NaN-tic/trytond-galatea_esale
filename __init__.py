@@ -4,10 +4,12 @@
 from trytond.pool import Pool
 from .galatea import *
 from .shop import *
+from .product import *
 
 def register():
     Pool.register(
         GalateaWebSite,
         GalateaUser,
         SaleShop,
+        Template,
         module='galatea_esale', type_='model')
