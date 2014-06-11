@@ -10,4 +10,5 @@ __metaclass__ = PoolMeta
 
 class Template:
     __name__ = 'product.template'
+    esale_new = fields.Boolean('New', help='Icon New product')
     esale_hot = fields.Boolean('Hot', help='Icon Hot product')

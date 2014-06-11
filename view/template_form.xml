@@ -3,6 +3,8 @@
 The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
 <data>
     <xpath expr="/form/notebook/page[@id=&quot;esale&quot;]/notebook/page[@id=&quot;esale-general&quot;]/field[@name=&quot;esale_sequence&quot;]" position="after">
+        <label name="esale_new"/>
+        <field name="esale_new"/>
         <label name="esale_hot"/>
         <field name="esale_hot"/>
     </xpath>
