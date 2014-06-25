@@ -20,3 +20,9 @@ class GalateaUser:
         help='Default Invoice Address')
     shipment_address = fields.Many2One('party.address', 'Shipment Address',
         help='Default Shipment Address')
+    show_price = fields.Boolean('Show Price',
+        help='Allow show prices (Global guest price configuration is not active')
+
+    @staticmethod
+    def default_show_price():
+        return True
