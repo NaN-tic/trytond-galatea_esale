@@ -1,4 +1,4 @@
-#:after:galatea/galatea:section:cambiar_contrasena#
+#:before:galatea/galatea:section:ficheros_estaticos#
 
 .. inheritref:: galatea_esale/galatea:section:catalogo
 
@@ -24,12 +24,17 @@ Para la gestión de menús accede a |menu_menu_tree|. Los menús se caracterizan
 navegación al estilo de árbol.
 
 * topmenu
+
  * Hogar
+
    * Neveras
    * Lavadoras
+
  * Ocio
+
    * TV
    * Música
+
  * Accesorios
 
 Los menús son lo que en otras tiendas llaman categorías. En este caso evitamos usar el termino
