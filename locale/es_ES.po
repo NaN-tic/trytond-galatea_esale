@@ -2,3 +2,68 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "field:galatea.user,invoice_address:"
+msgid "Invoice Address"
+msgstr "Dirección factura"
+
+msgctxt "field:galatea.user,shipment_address:"
+msgid "Shipment Address"
+msgstr "Dirección envío"
+
+msgctxt "field:galatea.user,show_price:"
+msgid "Show Price"
+msgstr "Mostrar precio"
+
+msgctxt "field:galatea.website,currency:"
+msgid "Currency"
+msgstr "Moneda"
+
+msgctxt "field:galatea.website,esale_menu:"
+msgid "Main Menu"
+msgstr "Menú principal"
+
+msgctxt "field:product.template,esale_hot:"
+msgid "Hot"
+msgstr "Hot"
+
+msgctxt "field:product.template,esale_new:"
+msgid "New"
+msgstr "Nuevo"
+
+msgctxt "field:sale.cart,galatea_user:"
+msgid "Galatea User"
+msgstr "Galatea Usuario"
+
+msgctxt "field:sale.cart,product_id:"
+msgid "Product ID"
+msgstr "ID producto"
+
+msgctxt "field:sale.cart,sid:"
+msgid "Session"
+msgstr "Sesión"
+
+msgctxt "help:galatea.user,invoice_address:"
+msgid "Default Invoice Address"
+msgstr "Dirección factura por defecto"
+
+msgctxt "help:galatea.user,shipment_address:"
+msgid "Default Shipment Address"
+msgstr "Dirección envío por defecto"
+
+msgctxt "help:galatea.user,show_price:"
+msgid "Allow show prices (Global guest price configuration is not active"
+msgstr ""
+"Permite mostrar precios (si la configuración global el precio anónimo no se "
+"encuentra activo)"
+
+msgctxt "help:galatea.website,esale_menu:"
+msgid "Main menu product catalog"
+msgstr "Menú principal catálogo"
+
+msgctxt "help:product.template,esale_hot:"
+msgid "Icon Hot product"
+msgstr "Icono Hot"
+
+msgctxt "help:product.template,esale_new:"
+msgid "Icon New product"
+msgstr "Icono nuevo"
