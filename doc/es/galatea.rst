@@ -220,3 +220,23 @@ se usará como base, miniatura o no se va a mostrar.
               sólo los caracteres az09- como el nombre del fichero todo en minúsculas.
               También se recomienda que el nombre del fichero tenga una relación con el producto.
               Un ejemplo seria: 0001-mi-producto.jpg
+
+.. inheritref:: galatea_esale/galatea:section:pedidos_venta
+
+Pedidos venta
+-------------
+
+Por defecto se muestran todos los pedidos de venta excepto en estado "Borrador".
+
+Si el sistema de pago esta activado, en el pedido de venta se muestra la realización
+del pago cuando el pedido esta en estado "Presupuesto".
+
+Desdel pedido de venta se puede acceder a los albaranes (envios) y facturas relacionado
+con el pedido de venta.
+
+.. inheritref:: galatea_esale/galatea:section:facturas
+
+Facturas
+--------
+
+Por defecto se muestran todas las facturas excepto en estado "Borrador".
