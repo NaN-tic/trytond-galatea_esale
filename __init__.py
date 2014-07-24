@@ -6,11 +6,13 @@ from .galatea import *
 from .sale_cart import *
 from .shop import *
 from .product import *
+from .payment_type import *
 
 def register():
     Pool.register(
         GalateaWebSite,
         GalateaUser,
+        PaymentType,
         SaleCart,
         SaleShop,
         Template,
