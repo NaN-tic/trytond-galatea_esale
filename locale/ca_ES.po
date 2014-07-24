@@ -2,6 +2,14 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "field:account.payment.type,esale_code:"
+msgid "Code App Payment"
+msgstr "Codi pagament App"
+
+msgctxt "field:account.payment.type,esale_payment:"
+msgid "Virtual Payment"
+msgstr "Pagament virtual"
+
 msgctxt "field:galatea.user,invoice_address:"
 msgid "Invoice Address"
 msgstr "Adreça de facturació"
@@ -22,6 +30,14 @@ msgctxt "field:galatea.website,esale_menu:"
 msgid "Main Menu"
 msgstr "Menú principal"
 
+msgctxt "field:product.template,esale_all_images:"
+msgid "eSale All Images"
+msgstr "eSale Totes les imatges"
+
+msgctxt "field:product.template,esale_default_images:"
+msgid "eSale Default Images"
+msgstr "eSale Imatge defecte"
+
 msgctxt "field:product.template,esale_hot:"
 msgid "Hot"
 msgstr "Hot"
@@ -29,6 +45,10 @@ msgstr "Hot"
 msgctxt "field:product.template,esale_new:"
 msgid "New"
 msgstr "Nou"
+
+msgctxt "field:product.template,esale_slug_langs:"
+msgid "Slug Langs"
+msgstr "Slug idiomes"
 
 msgctxt "field:sale.cart,galatea_user:"
 msgid "Galatea User"
