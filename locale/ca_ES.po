@@ -40,7 +40,7 @@ msgstr "eSale Imatge defecte"
 
 msgctxt "field:product.template,esale_hot:"
 msgid "Hot"
-msgstr "Hot"
+msgstr "Popular"
 
 msgctxt "field:product.template,esale_new:"
 msgid "New"
