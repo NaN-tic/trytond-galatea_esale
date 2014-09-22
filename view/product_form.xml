@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- This file is part esale_product module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
+<data>
+    <xpath expr="/form/separator[@name='description']" 
+            position="before">
+        <group colspan="6" id="esale">
+            <separator id="esale" string="eSale" colspan="6"/>
+            <label name="add_cart"/>
+            <field name="add_cart"/>
+        </group>
+    </xpath>
+</data>

@@ -16,4 +16,5 @@ def register():
         SaleCart,
         SaleShop,
         Template,
+        Product,
         module='galatea_esale', type_='model')
