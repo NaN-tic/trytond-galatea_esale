@@ -10,6 +10,10 @@ msgctxt "field:account.payment.type,esale_payment:"
 msgid "Virtual Payment"
 msgstr "Pagament virtual"
 
+msgctxt "field:galatea.user,b2b:"
+msgid "B2B"
+msgstr "B2B"
+
 msgctxt "field:galatea.user,invoice_address:"
 msgid "Invoice Address"
 msgstr "Adreça de facturació"
@@ -69,6 +73,10 @@ msgstr "Sessions"
 msgctxt "field:sale.cart,template_id:"
 msgid "Template ID"
 msgstr "Plantilla ID"
+
+msgctxt "help:galatea.user,b2b:"
+msgid "Allow views or data from B2B customers"
+msgstr "Permet vistes o dades per clients B2B"
 
 msgctxt "help:galatea.user,invoice_address:"
 msgid "Default Invoice Address"
