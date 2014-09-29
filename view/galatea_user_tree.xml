@@ -7,5 +7,6 @@ copyright notices and license types. -->
         <field name="invoice_address"/>
         <field name="shipment_address"/>
         <field name="show_price"/>
+        <field name="b2b"/>
     </xpath>
 </data>

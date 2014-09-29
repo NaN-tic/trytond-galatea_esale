@@ -22,6 +22,8 @@ class GalateaUser:
         help='Default Shipment Address')
     show_price = fields.Boolean('Show Price',
         help='Allow show prices (Global guest price configuration is not active')
+    b2b = fields.Boolean('B2B',
+        help='Allow views or data from B2B customers')
 
     @staticmethod
     def default_show_price():

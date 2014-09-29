@@ -10,5 +10,7 @@ copyright notices and license types. -->
         <field name="shipment_address"/>
         <label name="show_price"/>
         <field name="show_price"/>
+        <label name="b2b"/>
+        <field name="b2b"/>
     </xpath>
 </data>
