@@ -21,5 +21,78 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="inherit" ref="galatea.galatea_user_tree"/>
             <field name="name">galatea_user_tree</field> 
         </record>
+
+        <!-- Access -->
+        <record model="ir.model.access" id="access_galatea_sale_cart">
+            <field name="model" search="[('model', '=', 'sale.cart')]"/>
+            <field name="group" ref="galatea.group_galatea"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="access_galatea_sale">
+            <field name="model" search="[('model', '=', 'sale.sale')]"/>
+            <field name="group" ref="galatea.group_galatea"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_galatea_sale_line">
+            <field name="model" search="[('model', '=', 'sale.line')]"/>
+            <field name="group" ref="galatea.group_galatea"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.button-res.group" id="sale_quote_button_group_galatea">
+            <field name="button" ref="sale.sale_quote_button"/>
+            <field name="group" ref="galatea.group_galatea"/>
+        </record>
+
+        <record model="ir.model.access" id="access_galatea_invoice">
+            <field name="model" search="[('model', '=', 'account.invoice')]"/>
+            <field name="group" ref="galatea.group_galatea"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_galatea_invoice_line">
+            <field name="model" search="[('model', '=', 'account.invoice.line')]"/>
+            <field name="group" ref="galatea.group_galatea"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="access_galatea_stock_shipment_out">
+            <field name="model" search="[('model', '=', 'stock.shipment.out')]"/>
+            <field name="group" ref="galatea.group_galatea"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_galatea_stock_shipment_out_return">
+            <field name="model" search="[('model', '=', 'stock.shipment.out.return')]"/>
+            <field name="group" ref="galatea.group_galatea"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_galatea_stock_move">
+            <field name="model" search="[('model', '=', 'stock.move')]"/>
+            <field name="group" ref="galatea.group_galatea"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
     </data>
 </tryton>
