@@ -2,6 +2,12 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:sale.shop:"
+msgid "Functions import/export in Galatea Shops are not necessary"
+msgstr ""
+"Las funciones de importación/exportación en las tiendas Galatea no son "
+"necesarias"
+
 msgctxt "field:account.payment.type,esale_code:"
 msgid "Code App Payment"
 msgstr "Código pago App"
