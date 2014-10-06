@@ -16,6 +16,10 @@ msgctxt "field:account.payment.type,esale_payment:"
 msgid "Virtual Payment"
 msgstr "Pagament virtual"
 
+msgctxt "field:esale.catalog.menu,website:"
+msgid "Website"
+msgstr "Lloc Web"
+
 msgctxt "field:galatea.user,b2b:"
 msgid "B2B"
 msgstr "B2B"
