@@ -60,6 +60,10 @@ msgctxt "field:product.template,esale_hot:"
 msgid "Hot"
 msgstr "Popular"
 
+msgctxt "field:product.template,esale_menus_by_website:"
+msgid "Menus by Website"
+msgstr "Menús per lloc web"
+
 msgctxt "field:product.template,esale_new:"
 msgid "New"
 msgstr "Nou"
