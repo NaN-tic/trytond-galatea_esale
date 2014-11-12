@@ -242,3 +242,42 @@ Facturas
 --------
 
 Por defecto se muestran todas las facturas excepto en estado "Borrador".
+
+Transportistas
+--------------
+
+En la configuración de la tienda seleccione los transportistas que estaran disponibles
+(métodos de envío).
+
+En cada tienda dispondrá de uno o varios transportistas disponibles que el cliente
+podrá seleccionar (según el tipo de transportista: Envialia, MRW, Seur, etc)
+o bien según el precio de este servicio (precio del transportista).
+
+Cada transportista, según su método de coste del transportista, se obtendrá el precio.
+
+----------------
+Portes gratuitos
+----------------
+
+Si desea activar portes gratuitos (el precio del porte es 0) a partir de una total
+de la venta, deberá usar en el transportista que el método de coste del transportista
+sea "Cálculo" (opción disponible si se dispone del módulo "carrier formula").
+
+Para las variables de la formula podrá usar:
+
+.. code:: python
+
+    record.untaxed_amount
+    record.tax_amount
+    record.total_amount
+
+Un ejemplo de porte gratuito es que el precio del servicio sea 0 y a partir de
+una cantidad, en este ejemplo, más grande de 100:
+
+.. code:: python
+
+    record.total_amount > 100
+
+Otro ejemplo de uso es disponer de varios transportistas y según la formula,
+uno sea gratuito a partir de 50, o también disponer de otro transportista, pero
+este gratuito a partir de 100.
