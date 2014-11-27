@@ -169,7 +169,51 @@ visitas.
               las url's contacte con el administrador para que le active las redirecciones
               y evitar páginas no encontradas.
 
+También podemos obtener información de nuestro producto mediante JSON para terceras aplicaciones:
+
+* Español: http://www.midominio.com/es/catalog/json/mi-producto
+* Catalan: http://www.midominio.com/ca/catalog/json/meu-producte
+* Inglés: http://www.midominio.com/en/catalog/json/my-product
+
 .. |menu_template| tryref:: product.menu_template/complete_name
+
+.. inheritref:: galatea_esale/galatea:section:todo_catalogo
+
+Todo el catálogo
+----------------
+
+Para visualitzar todo nuestro catálogo de productos podemos acceder a esta URL:
+
+* Español: http://www.midominio.com/es/catalog/
+* Catalan: http://www.midominio.com/ca/catalog/
+* Inglés: http://www.midominio.com/en/catalog/
+
+También podemos hacer una búsqueda simple por el nombre completo
+(rec_name: por defecto código y nombre):
+
+* Español: http://www.midominio.com/es/catalog/?q=TEXTO
+* Catalan: http://www.midominio.com/ca/catalog/?q=TEXTO
+* Inglés: http://www.midominio.com/en/catalog/?q=TEXTO
+
+En este ejemplo "TEXTO" equivale la cadena de texto que se usaria para buscar.
+
+.. inheritref:: galatea_esale/galatea:section:buscar
+
+Buscar
+------
+
+En el caso que nuestro esale se haya configurado el motor de búsqueda o indexación
+podemos usar la url de buscar en nuestros productos.
+
+* Español: http://www.midominio.com/es/search/
+* Catalan: http://www.midominio.com/ca/search/
+* Inglés: http://www.midominio.com/en/search/
+
+Podemos cancatenar palabras usando "+" para AND y el "-" para el NOT. En el caso
+que sean espacios, se reemplazan como "+" (AND).
+
+Para el uso de Whoosh como la creación de esquemas e indexación consulte la documentación
+del módulo Whoosh.
 
 .. inheritref:: galatea_esale/galatea:section:tiendas
 
