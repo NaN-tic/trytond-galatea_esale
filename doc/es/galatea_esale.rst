@@ -205,9 +205,9 @@ Buscar
 En el caso que nuestro esale se haya configurado el motor de búsqueda o indexación
 podemos usar la url de buscar en nuestros productos.
 
-* Español: http://www.midominio.com/es/search/
-* Catalan: http://www.midominio.com/ca/search/
-* Inglés: http://www.midominio.com/en/search/
+* Español: http://www.midominio.com/es/catalog/search/
+* Catalan: http://www.midominio.com/ca/catalog/search/
+* Inglés: http://www.midominio.com/en/catalog/search/
 
 Podemos cancatenar palabras usando "+" para AND y el "-" para el NOT. En el caso
 que sean espacios, se reemplazan como "+" (AND).
