@@ -18,7 +18,7 @@ msgstr "Pagament virtual"
 
 msgctxt "field:esale.catalog.menu,website:"
 msgid "Website"
-msgstr "Lloc Web"
+msgstr "Lloc web"
 
 msgctxt "field:galatea.user,b2b:"
 msgid "B2B"
