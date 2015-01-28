@@ -44,6 +44,14 @@ msgctxt "field:galatea.website,esale_menu:"
 msgid "Main Menu"
 msgstr "Menú principal"
 
+msgctxt "field:galatea.website,esale_stock:"
+msgid "Stock"
+msgstr "Estoc"
+
+msgctxt "field:galatea.website,esale_stock_qty:"
+msgid "Quantity Stock"
+msgstr "Quantitat estoc"
+
 msgctxt "field:product.product,add_cart:"
 msgid "Add Cart"
 msgstr "Afegir cistella"
@@ -110,6 +118,16 @@ msgctxt "help:galatea.website,esale_menu:"
 msgid "Main menu product catalog"
 msgstr "Menú principal del catàleg de productes"
 
+msgctxt "help:galatea.website,esale_stock:"
+msgid "Manage Stock"
+msgstr "Gestiona estoc"
+
+msgctxt "help:galatea.website,esale_stock_qty:"
+msgid "Manage Stock is Product Quantity or Product Forecast Quantity"
+msgstr ""
+"Gestiona l'estoc per la quantitat del producte o la quantitat prevista del "
+"producte."
+
 msgctxt "help:product.product,add_cart:"
 msgid "Available to add cart"
 msgstr "Està disponible per afegir a la cistella"
@@ -121,6 +139,14 @@ msgstr "Icona Hot producte"
 msgctxt "help:product.template,esale_new:"
 msgid "Icon New product"
 msgstr "Icona Nou producte"
+
+msgctxt "selection:galatea.website,esale_stock_qty:"
+msgid "Forecast Quantity"
+msgstr "Quantitat prevista"
+
+msgctxt "selection:galatea.website,esale_stock_qty:"
+msgid "Quantity"
+msgstr "Quantitat"
 
 msgctxt "view:product.product:"
 msgid "eSale"
