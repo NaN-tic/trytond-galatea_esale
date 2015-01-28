@@ -25,7 +25,7 @@ class GalateaWebSite:
         help='Manage Stock is Product Quantity or Product Forecast Quantity')
 
     @staticmethod
-    def default_esale_stock():
+    def default_esale_stock_qty():
         return 'quantity'
 
 
