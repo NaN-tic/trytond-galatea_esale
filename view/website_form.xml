@@ -6,5 +6,9 @@ copyright notices and license types. -->
     <xpath expr="/form/notebook/page[@id=&quot;configuration&quot;]" position="inside">
         <label name="esale_menu"/>
         <field name="esale_menu"/>
+        <label name="esale_stock"/>
+        <field name="esale_stock"/>
+        <label name="esale_stock_qty"/>
+        <field name="esale_stock_qty"/>
     </xpath>
 </data>

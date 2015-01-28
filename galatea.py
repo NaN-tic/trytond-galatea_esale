@@ -4,6 +4,7 @@
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
+from trytond.pyson import Eval
 
 __all__ = ['GalateaWebSite', 'GalateaUser']
 __metaclass__ = PoolMeta
@@ -13,6 +14,19 @@ class GalateaWebSite:
     __name__ = "galatea.website"
     esale_menu = fields.Many2One('esale.catalog.menu', 'Main Menu', required=True,
         help='Main menu product catalog')
+    esale_stock = fields.Boolean('Stock',
+        help='Manage Stock')
+    esale_stock_qty = fields.Selection([
+        ('quantity', 'Quantity'),
+        ('forecast_quantity', 'Forecast Quantity'),
+        ], 'Quantity Stock', states={
+            'invisible': ~Eval('esale_stock', True),
+        },
+        help='Manage Stock is Product Quantity or Product Forecast Quantity')
+
+    @staticmethod
+    def default_esale_stock():
+        return 'quantity'
 
 
 class GalateaUser:
