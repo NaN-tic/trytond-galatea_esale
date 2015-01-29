@@ -46,7 +46,7 @@ msgstr "Menú principal"
 
 msgctxt "field:galatea.website,esale_stock:"
 msgid "Stock"
-msgstr "Logística"
+msgstr "Stock"
 
 msgctxt "field:galatea.website,esale_stock_qty:"
 msgid "Quantity Stock"
