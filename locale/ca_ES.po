@@ -56,6 +56,14 @@ msgctxt "field:product.product,add_cart:"
 msgid "Add Cart"
 msgstr "Afegir cistella"
 
+msgctxt "field:product.product,esale_forecast_quantity:"
+msgid "eSale Forecast Quantity"
+msgstr "eSale Quantitat prevista"
+
+msgctxt "field:product.product,esale_quantity:"
+msgid "eSale Quantity"
+msgstr "eSale Quantitat"
+
 msgctxt "field:product.template,esale_all_images:"
 msgid "eSale All Images"
 msgstr "eSale Totes les imatges"
@@ -63,6 +71,10 @@ msgstr "eSale Totes les imatges"
 msgctxt "field:product.template,esale_default_images:"
 msgid "eSale Default Images"
 msgstr "eSale Imatge defecte"
+
+msgctxt "field:product.template,esale_forecast_quantity:"
+msgid "eSale Forecast Quantity"
+msgstr "eSale Quantitat prevista"
 
 msgctxt "field:product.template,esale_hot:"
 msgid "Hot"
@@ -75,6 +87,10 @@ msgstr "Menús per lloc web"
 msgctxt "field:product.template,esale_new:"
 msgid "New"
 msgstr "Nou"
+
+msgctxt "field:product.template,esale_quantity:"
+msgid "eSale Quantity"
+msgstr "eSale Quantitat"
 
 msgctxt "field:product.template,esale_slug_langs:"
 msgid "Slug Langs"
@@ -95,6 +111,14 @@ msgstr "Sessions"
 msgctxt "field:sale.cart,template_id:"
 msgid "Template ID"
 msgstr "Plantilla ID"
+
+msgctxt "field:sale.shop,esale_discount_tax_include:"
+msgid "Discount Tax Include"
+msgstr "Descompte impostos inclòs"
+
+msgctxt "field:sale.shop,warehouses:"
+msgid "Warehouses"
+msgstr "Magatzems"
 
 msgctxt "help:galatea.user,b2b:"
 msgid "Allow views or data from B2B customers"
