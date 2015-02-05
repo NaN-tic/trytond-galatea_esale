@@ -32,10 +32,6 @@ msgctxt "field:galatea.user,shipment_address:"
 msgid "Shipment Address"
 msgstr "Adreça enviament"
 
-msgctxt "field:galatea.user,show_price:"
-msgid "Show Price"
-msgstr "Mostrar preu"
-
 msgctxt "field:galatea.website,currency:"
 msgid "Currency"
 msgstr "Moneda"
@@ -131,12 +127,6 @@ msgstr "Adreça factura per defecte"
 msgctxt "help:galatea.user,shipment_address:"
 msgid "Default Shipment Address"
 msgstr "Adreça enviament per defecte"
-
-msgctxt "help:galatea.user,show_price:"
-msgid "Allow show prices (Global guest price configuration is not active"
-msgstr ""
-"Permet mostrar preus (La configuració global del preu general no ha d'estar "
-"actiu)"
 
 msgctxt "help:galatea.website,esale_menu:"
 msgid "Main menu product catalog"

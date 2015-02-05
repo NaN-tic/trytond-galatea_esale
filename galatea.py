@@ -35,14 +35,8 @@ class GalateaUser:
         help='Default Invoice Address')
     shipment_address = fields.Many2One('party.address', 'Shipment Address',
         help='Default Shipment Address')
-    show_price = fields.Boolean('Show Price',
-        help='Allow show prices (Global guest price configuration is not active')
     b2b = fields.Boolean('B2B',
         help='Allow views or data from B2B customers')
-
-    @staticmethod
-    def default_show_price():
-        return True
 
     @classmethod
     def signal_login(cls, user, session=None, website=None):
