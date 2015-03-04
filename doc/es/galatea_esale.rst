@@ -177,6 +177,27 @@ También podemos obtener información de nuestro producto mediante JSON para ter
 
 .. |menu_template| tryref:: product.menu_template/complete_name
 
+.. inheritref:: galatea_esale/galatea:section:keys
+
+Palabras clave
+--------------
+
+Para visualitzar todo nuestro catálogo de productos podemos filtrar por palabras clave.
+Este sistema le permite crear dinámicamente urls y nuevas secciones:
+
+* Español: http://www.midominio.com/es/catalog/key/PALABRA
+* Catalan: http://www.midominio.com/ca/catalog/key/PALABRA
+* Inglés: http://www.midominio.com/en/catalog/key/PALABRA
+
+También podemos hacer una búsqueda simple por el nombre completo
+(rec_name: por defecto código y nombre):
+
+* Español: http://www.midominio.com/es/catalog/key/PALABRA?q=TEXTO
+* Catalan: http://www.midominio.com/ca/catalog/key/PALABRA?q=TEXTO
+* Inglés: http://www.midominio.com/en/catalog/key/PALABRA?q=TEXTO
+
+En este ejemplo "TEXTO" equivale la cadena de texto que se usaria para buscar.
+
 .. inheritref:: galatea_esale/galatea:section:todo_catalogo
 
 Todo el catálogo
