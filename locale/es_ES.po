@@ -2,6 +2,18 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:product.template:"
+msgid "\"%(file_name)s\" file mime is not an image (jpg, png or gif)"
+msgstr "El \"%(file_name)s\" no es una imagen (jpg, png or gif)"
+
+msgctxt "error:product.template:"
+msgid "Not know file mime \"%(file_name)s\""
+msgstr "No se conoce el tipo de fichero \"%(file_name)s\""
+
+msgctxt "error:product.template:"
+msgid "Thumb \"%(file_name)s\" size is larger than \"%(size)s\"Kb"
+msgstr ""
+
 msgctxt "error:sale.shop:"
 msgid "Functions import/export in Galatea Shops are not necessary"
 msgstr ""
@@ -52,6 +64,10 @@ msgctxt "field:product.product,add_cart:"
 msgid "Add Cart"
 msgstr "Añadir cesta"
 
+msgctxt "field:product.product,attachments:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
 msgctxt "field:product.product,esale_forecast_quantity:"
 msgid "eSale Forecast Quantity"
 msgstr "eSale Cantidad prevista"
@@ -64,6 +80,10 @@ msgctxt "field:product.template,esale_all_images:"
 msgid "eSale All Images"
 msgstr "eSale todas imágenes"
 
+msgctxt "field:product.template,esale_crosssells_by_shop:"
+msgid "Crosssells by Shop"
+msgstr "Ventas cruzadas por tienda"
+
 msgctxt "field:product.template,esale_default_images:"
 msgid "eSale Default Images"
 msgstr "eSale imagen defecto"
@@ -71,6 +91,10 @@ msgstr "eSale imagen defecto"
 msgctxt "field:product.template,esale_forecast_quantity:"
 msgid "eSale Forecast Quantity"
 msgstr "eSale Cantidad prevista"
+
+msgctxt "field:product.template,esale_global_price:"
+msgid "eSale Global Price"
+msgstr "Precio eSale global"
 
 msgctxt "field:product.template,esale_hot:"
 msgid "Hot"
@@ -88,9 +112,29 @@ msgctxt "field:product.template,esale_quantity:"
 msgid "eSale Quantity"
 msgstr "eSale Cantidad"
 
+msgctxt "field:product.template,esale_relateds_by_shop:"
+msgid "Relateds by Shop"
+msgstr "Relacionados por tienda"
+
 msgctxt "field:product.template,esale_slug_langs:"
 msgid "Slug Langs"
 msgstr "Slug idiomas"
+
+msgctxt "field:product.template,esale_thumb:"
+msgid "Thumb"
+msgstr ""
+
+msgctxt "field:product.template,esale_thumb_filename:"
+msgid "File Name"
+msgstr "Nombre fichero"
+
+msgctxt "field:product.template,esale_thumb_path:"
+msgid "Thumb Path"
+msgstr ""
+
+msgctxt "field:product.template,esale_upsells_by_shop:"
+msgid "Upsells by Shop"
+msgstr "Ventas sugeridas por tienda"
 
 msgctxt "field:sale.cart,galatea_user:"
 msgid "Galatea User"
@@ -153,6 +197,22 @@ msgstr "Icono Hot"
 msgctxt "help:product.template,esale_new:"
 msgid "Icon New product"
 msgstr "Icono nuevo"
+
+msgctxt "help:product.template,esale_price:"
+msgid ""
+"eSale price is calculated from shop in user preferences and shop "
+"configuration"
+msgstr ""
+"El precio de eSale es calculado según la tienda de las preferencias del "
+"usuario y la configuración de la tienda"
+
+msgctxt "help:product.template,esale_thumb:"
+msgid "Thumbnail Product Image"
+msgstr ""
+
+msgctxt "help:product.template,esale_thumb_filename:"
+msgid "Thumbnail Product File Name"
+msgstr ""
 
 msgctxt "selection:galatea.website,esale_stock_qty:"
 msgid "Forecast Quantity"
