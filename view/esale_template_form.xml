@@ -8,4 +8,9 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         <label name="esale_hot"/>
         <field name="esale_hot"/>
     </xpath>
+    <xpath expr="/form/notebook/page[@id='prices']/field[@name='list_price']"
+            position="after">
+        <label name="esale_global_price"/>
+        <field name="esale_global_price"/>
+    </xpath>
 </data>

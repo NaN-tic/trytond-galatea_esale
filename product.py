@@ -1,6 +1,7 @@
 # This file is part galatea_esale module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+from trytond.config import config
 from trytond.model import fields
 from trytond.pool import PoolMeta
 from trytond.pyson import Eval
@@ -8,6 +9,7 @@ from trytond.transaction import Transaction
 
 __all__ = ['Template', 'Product']
 __metaclass__ = PoolMeta
+DIGITS = int(config.get('digits', 'unit_price_digits', 4))
 
 
 class Template:
@@ -17,6 +19,13 @@ class Template:
     esale_menus_by_website = fields.Function(fields.Many2Many(
         'esale.catalog.menu', None, None, 'Menus by Website'),
         'get_esale_menus_by_website')
+    esale_global_price = fields.Numeric('eSale Global Price',
+        digits=(16, DIGITS),
+        states={
+            'readonly': ~Eval('active', True),
+            'required': Eval('esale_available', False),
+            },
+        depends=['active', 'esale_available'])
 
     def get_esale_menus_by_website(self, name):
         '''Get all menus by website (context)'''
@@ -34,6 +43,11 @@ class Template:
             if menu.website.id == website:
                 menus.append(menu.id)
         return menus
+
+    @fields.depends('list_price')
+    def on_change_with_esale_global_price(self, name=None):
+        if self.list_price:
+            return self.list_price
 
 
 class Product:
