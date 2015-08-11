@@ -1,15 +1,16 @@
 # This file is part galatea_esale module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
-from trytond.config import config
 from trytond.model import fields
 from trytond.pool import PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
+from trytond.config import config as config_
 
 __all__ = ['Template', 'Product']
 __metaclass__ = PoolMeta
-DIGITS = int(config.get('digits', 'unit_price_digits', 4))
+
+DIGITS = config_.getint('product', 'price_decimal', default=4)
 
 
 class Template:
