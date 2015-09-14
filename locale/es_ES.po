@@ -12,7 +12,7 @@ msgstr "No se conoce el tipo de fichero \"%(file_name)s\""
 
 msgctxt "error:product.template:"
 msgid "Thumb \"%(file_name)s\" size is larger than \"%(size)s\"Kb"
-msgstr ""
+msgstr "El tamaño de la miniatura \"%(file_name)s\" es más grande que \"%(size)s\"Kb"
 
 msgctxt "error:sale.shop:"
 msgid "Functions import/export in Galatea Shops are not necessary"
@@ -122,7 +122,7 @@ msgstr "Slug idiomas"
 
 msgctxt "field:product.template,esale_thumb:"
 msgid "Thumb"
-msgstr ""
+msgstr "Miniatura"
 
 msgctxt "field:product.template,esale_thumb_filename:"
 msgid "File Name"
@@ -130,7 +130,7 @@ msgstr "Nombre fichero"
 
 msgctxt "field:product.template,esale_thumb_path:"
 msgid "Thumb Path"
-msgstr ""
+msgstr "Ruta miniatura"
 
 msgctxt "field:product.template,esale_upsells_by_shop:"
 msgid "Upsells by Shop"
@@ -208,11 +208,11 @@ msgstr ""
 
 msgctxt "help:product.template,esale_thumb:"
 msgid "Thumbnail Product Image"
-msgstr ""
+msgstr "Imagen miniatura producto"
 
 msgctxt "help:product.template,esale_thumb_filename:"
 msgid "Thumbnail Product File Name"
-msgstr ""
+msgstr "Nombre fichero miniatura producto"
 
 msgctxt "selection:galatea.website,esale_stock_qty:"
 msgid "Forecast Quantity"
