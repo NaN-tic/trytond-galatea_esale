@@ -78,11 +78,15 @@ class GalateaUser:
                 shop = Shop(shop)
                 context['price_list'] = shop.price_list.id
 
+        to_save = []
         with Transaction().set_context(context):
             for cart in carts:
-                price = Product.get_sale_price([cart.product],
-                            cart.quantity)[cart.product.id]
+                prices = Product.get_sale_price([cart.product], cart.quantity or 0)
+                price = prices[cart.product.id]
                 cart.unit_price = price
-                cart.save() #TODO 3.6 save multiples records
+                to_save.append(cart)
+
+        if to_save:
+            SaleCart.save(to_save)
 
         super(GalateaUser, cls).signal_login(user, session, website)
