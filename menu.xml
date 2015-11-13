@@ -5,19 +5,19 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
     <data>
         <record model="ir.ui.view" id="menu_view_list">
             <field name="model">esale.catalog.menu</field>
-            <field name="type">tree</field>
+            <field name="type" eval="None"/>
             <field name="inherit" ref="product_esale.menu_view_list"/>
             <field name="name">menu_list</field>
         </record>
         <record model="ir.ui.view" id="menu_view_tree">
             <field name="model">esale.catalog.menu</field>
-            <field name="type">tree</field>
+            <field name="type" eval="None"/>
             <field name="inherit" ref="product_esale.menu_view_tree"/>
             <field name="name">menu_tree</field>
         </record>
         <record model="ir.ui.view" id="menu_view_form">
             <field name="model">esale.catalog.menu</field>
-            <field name="type">form</field>
+            <field name="type" eval="None"/>
             <field name="inherit" ref="product_esale.menu_view_form"/>
             <field name="name">menu_form</field>
         </record>
