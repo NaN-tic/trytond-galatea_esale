@@ -4,6 +4,7 @@
 from trytond.pool import Pool
 from .galatea import *
 from .menu import *
+from .sale import *
 from .sale_cart import *
 from .shop import *
 from .product import *
@@ -15,6 +16,7 @@ def register():
         GalateaWebSite,
         GalateaUser,
         PaymentType,
+        Sale,
         SaleCart,
         SaleShop,
         Template,

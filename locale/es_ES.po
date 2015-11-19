@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -12,7 +12,7 @@ msgstr "No se conoce el tipo de fichero \"%(file_name)s\""
 
 msgctxt "error:product.template:"
 msgid "Thumb \"%(file_name)s\" size is larger than \"%(size)s\"Kb"
-msgstr ""
+msgstr "El tamaño de la miniatura \"%(file_name)s\" es más grande que \"%(size)s\"Kb"
 
 msgctxt "error:sale.shop:"
 msgid "Functions import/export in Galatea Shops are not necessary"
@@ -120,18 +120,6 @@ msgctxt "field:product.template,esale_slug_langs:"
 msgid "Slug Langs"
 msgstr "Slug idiomas"
 
-msgctxt "field:product.template,esale_thumb:"
-msgid "Thumb"
-msgstr ""
-
-msgctxt "field:product.template,esale_thumb_filename:"
-msgid "File Name"
-msgstr "Nombre fichero"
-
-msgctxt "field:product.template,esale_thumb_path:"
-msgid "Thumb Path"
-msgstr ""
-
 msgctxt "field:product.template,esale_upsells_by_shop:"
 msgid "Upsells by Shop"
 msgstr "Ventas sugeridas por tienda"
@@ -151,6 +139,10 @@ msgstr "Sesión"
 msgctxt "field:sale.cart,template_id:"
 msgid "Template ID"
 msgstr "Plantilla ID"
+
+msgctxt "field:sale.sale,galatea_user:"
+msgid "Galatea User"
+msgstr "Galatea Usuario"
 
 msgctxt "field:sale.shop,esale_discount_tax_include:"
 msgid "Discount Tax Include"
@@ -205,14 +197,6 @@ msgid ""
 msgstr ""
 "El precio de eSale es calculado según la tienda de las preferencias del "
 "usuario y la configuración de la tienda"
-
-msgctxt "help:product.template,esale_thumb:"
-msgid "Thumbnail Product Image"
-msgstr ""
-
-msgctxt "help:product.template,esale_thumb_filename:"
-msgid "Thumbnail Product File Name"
-msgstr ""
 
 msgctxt "selection:galatea.website,esale_stock_qty:"
 msgid "Forecast Quantity"
