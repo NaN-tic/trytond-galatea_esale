@@ -122,7 +122,7 @@ msgstr "Slug idiomes"
 
 msgctxt "field:product.template,esale_thumb:"
 msgid "Thumb"
-msgstr "Miniatura"
+msgstr ""
 
 msgctxt "field:product.template,esale_thumb_filename:"
 msgid "File Name"
@@ -130,7 +130,7 @@ msgstr "Nom fitxer"
 
 msgctxt "field:product.template,esale_thumb_path:"
 msgid "Thumb Path"
-msgstr "Ruta miniatura"
+msgstr ""
 
 msgctxt "field:product.template,esale_upsells_by_shop:"
 msgid "Upsells by Shop"
@@ -151,6 +151,10 @@ msgstr "Sessions"
 msgctxt "field:sale.cart,template_id:"
 msgid "Template ID"
 msgstr "Plantilla ID"
+
+msgctxt "field:sale.sale,galatea_user:"
+msgid "Galatea User"
+msgstr "Galatea Usuari"
 
 msgctxt "field:sale.shop,esale_discount_tax_include:"
 msgid "Discount Tax Include"
@@ -208,11 +212,11 @@ msgstr ""
 
 msgctxt "help:product.template,esale_thumb:"
 msgid "Thumbnail Product Image"
-msgstr "Imatge miniatura producte"
+msgstr ""
 
 msgctxt "help:product.template,esale_thumb_filename:"
 msgid "Thumbnail Product File Name"
-msgstr "Nom fitxer miniatura producte"
+msgstr ""
 
 msgctxt "selection:galatea.website,esale_stock_qty:"
 msgid "Forecast Quantity"
