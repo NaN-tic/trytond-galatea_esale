@@ -33,10 +33,10 @@ class GalateaUser:
     __name__ = "galatea.user"
     invoice_address = fields.Many2One('party.address', 'Invoice Address',
         domain=[('party', '=', Eval('party')), ('invoice', '=', True)],
-        help='Default Invoice Address')
+        depends=['party'], help='Default Invoice Address')
     shipment_address = fields.Many2One('party.address', 'Shipment Address',
         domain=[('party', '=', Eval('party')), ('delivery', '=', True)],
-        help='Default Shipment Address')
+        depends=['party'], help='Default Shipment Address')
     b2b = fields.Boolean('B2B',
         help='Allow views or data from B2B customers')
 
