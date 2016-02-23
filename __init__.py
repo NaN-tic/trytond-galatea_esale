@@ -17,7 +17,7 @@ def register():
         GalateaUser,
         PaymentType,
         Sale,
-        SaleCart,
+        SaleLine,
         SaleShop,
         Template,
         Product,
