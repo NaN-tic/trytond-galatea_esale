@@ -5,7 +5,6 @@ from trytond.pool import Pool
 from .galatea import *
 from .menu import *
 from .sale import *
-from .sale_cart import *
 from .shop import *
 from .product import *
 from .payment_type import *
