@@ -46,16 +46,16 @@ class GalateaUser:
         Update cart prices when user login
         """
         pool = Pool()
-        SaleCart = pool.get('sale.cart')
         User = pool.get('galatea.user')
-        Shop = pool.get('sale.shop')
         Product = pool.get('product.product')
+        Shop = pool.get('sale.shop')
+        SaleLine = pool.get('sale.line')
         
         user = User(user)
 
         # not filter by shop. Update all current carts
         domain = [
-            ('state', '=', 'draft'),
+            ('sale', '=', None),
             ]
         if session: # login user. Filter sid or user
             domain.append(['OR', 
@@ -66,7 +66,7 @@ class GalateaUser:
             domain.append(
                 ('sid', '=', session),
                 )
-        carts = SaleCart.search(domain)
+        lines = SaleLine.search(domain)
 
         context = {}
         context['customer'] = user.party.id
@@ -80,13 +80,19 @@ class GalateaUser:
 
         to_save = []
         with Transaction().set_context(context):
-            for cart in carts:
-                prices = Product.get_sale_price([cart.product], cart.quantity or 0)
-                price = prices[cart.product.id]
-                cart.unit_price = price
-                to_save.append(cart)
+            for line in lines:
+                prices = Product.get_sale_price([line.product], line.quantity or 0)
+                price = prices[line.product.id]
+
+                if hasattr(SaleLine, 'gross_unit_price'):
+                    line.gross_unit_price = price
+                    line.update_prices()
+                else:
+                    line.unit_price = price
+
+                to_save.append(line)
 
         if to_save:
-            SaleCart.save(to_save)
+            SaleLine.save(to_save)
 
         super(GalateaUser, cls).signal_login(user, session, website)
