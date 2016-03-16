@@ -19,6 +19,10 @@ class Sale:
         '''Available eSale Carriers'''
         return [c.carrier for c in shop.esale_carriers]
 
+    def set_esale_sale(self, data):
+        '''Overwrite this method to add more fields in sale object from request.form.data'''
+        return self
+
 
 class SaleLine:
     __name__ = 'sale.line'
