@@ -14,6 +14,11 @@ class Sale:
     galatea_user = fields.Many2One('galatea.user', 'Galatea User',
          readonly=True)
 
+    @classmethod
+    def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0, payment=None):
+        '''Available eSale Carriers'''
+        return [c.carrier for c in shop.esale_carriers]
+
 
 class SaleLine:
     __name__ = 'sale.line'
