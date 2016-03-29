@@ -136,22 +136,6 @@ msgctxt "field:product.template,esale_upsells_by_shop:"
 msgid "Upsells by Shop"
 msgstr "Ventas sugeridas por tienda"
 
-msgctxt "field:sale.cart,galatea_user:"
-msgid "Galatea User"
-msgstr "Galatea Usuario"
-
-msgctxt "field:sale.cart,product_id:"
-msgid "Product ID"
-msgstr "ID producto"
-
-msgctxt "field:sale.cart,sid:"
-msgid "Session"
-msgstr "Sesión"
-
-msgctxt "field:sale.cart,template_id:"
-msgid "Template ID"
-msgstr "Plantilla ID"
-
 msgctxt "field:sale.sale,galatea_user:"
 msgid "Galatea User"
 msgstr "Galatea Usuario"
