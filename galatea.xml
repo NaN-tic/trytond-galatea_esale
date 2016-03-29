@@ -23,15 +23,6 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         </record>
 
         <!-- Access -->
-        <record model="ir.model.access" id="access_galatea_sale_cart">
-            <field name="model" search="[('model', '=', 'sale.cart')]"/>
-            <field name="group" ref="galatea.group_galatea"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="True"/>
-            <field name="perm_create" eval="True"/>
-            <field name="perm_delete" eval="True"/>
-        </record>
-
         <record model="ir.model.access" id="access_galatea_sale">
             <field name="model" search="[('model', '=', 'sale.sale')]"/>
             <field name="group" ref="galatea.group_galatea"/>
