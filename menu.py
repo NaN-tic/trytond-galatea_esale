@@ -5,10 +5,10 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 
 __all__ = ['CatalogMenu']
-__metaclass__ = PoolMeta
 
 
 class CatalogMenu:
+    __metaclass__ = PoolMeta
     __name__ = 'esale.catalog.menu'
     website = fields.Many2One('galatea.website', 'Website')
 

@@ -7,13 +7,24 @@ from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.config import config as config_
 
-__all__ = ['Template', 'Product']
-__metaclass__ = PoolMeta
+__all__ = ['Category', 'Template', 'Product']
 
 DIGITS = config_.getint('product', 'price_decimal', default=4)
 
 
+class Category:
+    __metaclass__ = PoolMeta
+    __name__ = "product.category"
+
+    @classmethod
+    def __setup__(cls):
+        super(Category, cls).__setup__()
+        if hasattr(cls, 'esale_active'):
+            cls.website = fields.Many2One('galatea.website', 'Website')
+
+
 class Template:
+    __metaclass__ = PoolMeta
     __name__ = 'product.template'
     esale_new = fields.Boolean('New', help='Icon New product')
     esale_hot = fields.Boolean('Hot', help='Icon Hot product')
@@ -52,6 +63,7 @@ class Template:
 
 
 class Product:
+    __metaclass__ = PoolMeta
     __name__ = 'product.product'
     add_cart = fields.Boolean('Add Cart', states={
             'readonly': ~Eval('active', True),

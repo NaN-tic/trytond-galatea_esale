@@ -7,10 +7,10 @@ from trytond.transaction import Transaction
 from trytond.pyson import Eval
 
 __all__ = ['GalateaWebSite', 'GalateaUser']
-__metaclass__ = PoolMeta
 
 
 class GalateaWebSite:
+    __metaclass__ = PoolMeta
     __name__ = "galatea.website"
     esale_menu = fields.Many2One('esale.catalog.menu', 'Main Menu', required=True,
         help='Main menu product catalog')
@@ -30,6 +30,7 @@ class GalateaWebSite:
 
 
 class GalateaUser:
+    __metaclass__ = PoolMeta
     __name__ = "galatea.user"
     invoice_address = fields.Many2One('party.address', 'Invoice Address',
         domain=[('party', '=', Eval('party')), ('invoice', '=', True)],
@@ -50,7 +51,7 @@ class GalateaUser:
         Product = pool.get('product.product')
         Shop = pool.get('sale.shop')
         SaleLine = pool.get('sale.line')
-        
+
         user = User(user)
 
         # not filter by shop. Update all current carts
@@ -58,7 +59,7 @@ class GalateaUser:
             ('sale', '=', None),
             ]
         if session: # login user. Filter sid or user
-            domain.append(['OR', 
+            domain.append(['OR',
                 ('sid', '=', session),
                 ('galatea_user', '=', user),
                 ])
