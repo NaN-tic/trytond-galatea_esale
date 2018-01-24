@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- This file is part of galatea_esale module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license types. -->
+<data>
+    <xpath expr="/form/notebook/page[@id='configuration']" position="inside">
+        <label name="esale_category_menu"/>
+        <field name="esale_category_menu"/>
+    </xpath>
+</data>

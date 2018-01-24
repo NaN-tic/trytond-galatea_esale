@@ -7,19 +7,19 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         <record model="ir.ui.view" id="website_view_form">
             <field name="model">galatea.website</field>
             <field name="inherit" ref="galatea.website_view_form"/>
-            <field name="name">website_form</field> 
+            <field name="name">website_form</field>
         </record>
 
         <!-- User -->
         <record model="ir.ui.view" id="galatea_user_form2">
             <field name="model">galatea.user</field>
             <field name="inherit" ref="galatea.galatea_user_form2"/>
-            <field name="name">galatea_user_form</field> 
+            <field name="name">galatea_user_form</field>
         </record>
         <record model="ir.ui.view" id="galatea_user_tree">
             <field name="model">galatea.user</field>
             <field name="inherit" ref="galatea.galatea_user_tree"/>
-            <field name="name">galatea_user_tree</field> 
+            <field name="name">galatea_user_tree</field>
         </record>
 
         <!-- Access -->
@@ -84,6 +84,13 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
             <field name="perm_delete" eval="False"/>
+        </record>
+    </data>
+    <data depends="product_esale_categories">
+        <record model="ir.ui.view" id="website_category_view_form">
+            <field name="model">galatea.website</field>
+            <field name="inherit" ref="galatea.website_view_form"/>
+            <field name="name">website_category_form</field>
         </record>
     </data>
 </tryton>
