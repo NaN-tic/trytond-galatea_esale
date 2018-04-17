@@ -7,9 +7,20 @@ from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.config import config as config_
 
-__all__ = ['Template', 'Product']
+__all__ = ['Category', 'Template', 'Product']
 
 DIGITS = config_.getint('product', 'price_decimal', default=4)
+
+
+class Category:
+    __metaclass__ = PoolMeta
+    __name__ = "product.category"
+
+    @classmethod
+    def __setup__(cls):
+        super(Category, cls).__setup__()
+        if hasattr(cls, 'esale_active'):
+            cls.website = fields.Many2One('galatea.website', 'Website')
 
 
 class Template:

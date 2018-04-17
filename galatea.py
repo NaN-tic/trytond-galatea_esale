@@ -13,7 +13,7 @@ class GalateaWebSite:
     __metaclass__ = PoolMeta
     __name__ = "galatea.website"
     esale_menu = fields.Many2One('esale.catalog.menu', 'Main Menu', required=True,
-        help='Main menu product catalog')
+        help='Main menu of product catalog')
     esale_stock = fields.Boolean('Stock',
         help='Manage Stock')
     esale_stock_qty = fields.Selection([
@@ -23,6 +23,10 @@ class GalateaWebSite:
             'invisible': ~Eval('esale_stock', True),
         },
         help='Manage Stock is Product Quantity or Product Forecast Quantity')
+    esale_category_menu = fields.Many2One('product.category',
+        'Catalog Category Menu', domain=[
+            ('esale_active', '=', True),
+        ], help='Main menu of catalog category')
 
     @staticmethod
     def default_esale_stock_qty():
@@ -51,7 +55,7 @@ class GalateaUser:
         Product = pool.get('product.product')
         Shop = pool.get('sale.shop')
         SaleLine = pool.get('sale.line')
-        
+
         user = User(user)
 
         # not filter by shop. Update all current carts
@@ -59,7 +63,7 @@ class GalateaUser:
             ('sale', '=', None),
             ]
         if session: # login user. Filter sid or user
-            domain.append(['OR', 
+            domain.append(['OR',
                 ('sid', '=', session),
                 ('galatea_user', '=', user),
                 ])
