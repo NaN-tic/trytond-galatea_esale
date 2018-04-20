@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -48,6 +48,10 @@ msgctxt "field:galatea.website,currency:"
 msgid "Currency"
 msgstr "Moneda"
 
+msgctxt "field:galatea.website,esale_category_menu:"
+msgid "Catalog Category Menu"
+msgstr "Categoria del menú del catalogo"
+
 msgctxt "field:galatea.website,esale_menu:"
 msgid "Main Menu"
 msgstr "Menú principal"
@@ -60,6 +64,10 @@ msgctxt "field:galatea.website,esale_stock_qty:"
 msgid "Quantity Stock"
 msgstr "Cantidad stock"
 
+msgctxt "field:product.category,website:"
+msgid "Website"
+msgstr "Sitio Web"
+
 msgctxt "field:product.product,add_cart:"
 msgid "Add Cart"
 msgstr "Añadir cesta"
@@ -71,6 +79,22 @@ msgstr "Adjuntos"
 msgctxt "field:product.product,esale_forecast_quantity:"
 msgid "eSale Forecast Quantity"
 msgstr "eSale Cantidad prevista"
+
+msgctxt "field:product.product,esale_global_price:"
+msgid "eSale Global Price"
+msgstr "Precio eSale global"
+
+msgctxt "field:product.product,esale_hot:"
+msgid "Hot"
+msgstr "Popular"
+
+msgctxt "field:product.product,esale_menus_by_website:"
+msgid "Menus by Website"
+msgstr "Menús por sitio web"
+
+msgctxt "field:product.product,esale_new:"
+msgid "New"
+msgstr "Nuevo"
 
 msgctxt "field:product.product,esale_quantity:"
 msgid "eSale Quantity"
@@ -120,21 +144,29 @@ msgctxt "field:product.template,esale_slug_langs:"
 msgid "Slug Langs"
 msgstr "Slug idiomas"
 
-msgctxt "field:product.template,esale_thumb:"
-msgid "Thumb"
-msgstr ""
-
-msgctxt "field:product.template,esale_thumb_filename:"
-msgid "File Name"
-msgstr "Nombre fichero"
-
-msgctxt "field:product.template,esale_thumb_path:"
-msgid "Thumb Path"
-msgstr ""
-
 msgctxt "field:product.template,esale_upsells_by_shop:"
 msgid "Upsells by Shop"
 msgstr "Ventas sugeridas por tienda"
+
+msgctxt "field:sale.line,galatea_user:"
+msgid "Galatea User"
+msgstr "Galatea Usuario"
+
+msgctxt "field:sale.line,product_id:"
+msgid "Product ID"
+msgstr "Indentificador del producto"
+
+msgctxt "field:sale.line,shop:"
+msgid "Shop"
+msgstr "Tienda"
+
+msgctxt "field:sale.line,sid:"
+msgid "Session"
+msgstr "Sesión"
+
+msgctxt "field:sale.line,template_id:"
+msgid "Template ID"
+msgstr "Identificador de la plantilla"
 
 msgctxt "field:sale.sale,galatea_user:"
 msgid "Galatea User"
@@ -160,9 +192,13 @@ msgctxt "help:galatea.user,shipment_address:"
 msgid "Default Shipment Address"
 msgstr "Dirección envío por defecto"
 
+msgctxt "help:galatea.website,esale_category_menu:"
+msgid "Main menu of catalog category"
+msgstr "Menú principal de categorias del catalogo"
+
 msgctxt "help:galatea.website,esale_menu:"
-msgid "Main menu product catalog"
-msgstr "Menú principal catálogo"
+msgid "Main menu of product catalog"
+msgstr "Menú principal de catálogo de productos"
 
 msgctxt "help:galatea.website,esale_stock:"
 msgid "Manage Stock"
@@ -178,13 +214,21 @@ msgctxt "help:product.product,add_cart:"
 msgid "Available to add cart"
 msgstr "Disponible para añadir a la cesta"
 
+msgctxt "help:product.product,esale_hot:"
+msgid "Icon Hot product"
+msgstr "Icono de producto popular"
+
+msgctxt "help:product.product,esale_new:"
+msgid "Icon New product"
+msgstr "Icono de producto nuevo"
+
 msgctxt "help:product.template,esale_hot:"
 msgid "Icon Hot product"
-msgstr "Icono Hot"
+msgstr "Icono de producto popular"
 
 msgctxt "help:product.template,esale_new:"
 msgid "Icon New product"
-msgstr "Icono nuevo"
+msgstr "Icono de producto nuevo"
 
 msgctxt "help:product.template,esale_price:"
 msgid ""
@@ -193,14 +237,6 @@ msgid ""
 msgstr ""
 "El precio de eSale es calculado según la tienda de las preferencias del "
 "usuario y la configuración de la tienda"
-
-msgctxt "help:product.template,esale_thumb:"
-msgid "Thumbnail Product Image"
-msgstr ""
-
-msgctxt "help:product.template,esale_thumb_filename:"
-msgid "Thumbnail Product File Name"
-msgstr ""
 
 msgctxt "selection:galatea.website,esale_stock_qty:"
 msgid "Forecast Quantity"
