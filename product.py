@@ -12,8 +12,7 @@ __all__ = ['Category', 'Template', 'Product']
 DIGITS = config_.getint('product', 'price_decimal', default=4)
 
 
-class Category:
-    __metaclass__ = PoolMeta
+class Category(metaclass=PoolMeta):
     __name__ = "product.category"
 
     @classmethod
@@ -23,8 +22,7 @@ class Category:
             cls.website = fields.Many2One('galatea.website', 'Website')
 
 
-class Template:
-    __metaclass__ = PoolMeta
+class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
     esale_new = fields.Boolean('New', help='Icon New product')
     esale_hot = fields.Boolean('Hot', help='Icon Hot product')
@@ -62,8 +60,7 @@ class Template:
             return self.list_price
 
 
-class Product:
-    __metaclass__ = PoolMeta
+class Product(metaclass=PoolMeta):
     __name__ = 'product.product'
     add_cart = fields.Boolean('Add Cart', states={
             'readonly': ~Eval('active', True),

@@ -9,8 +9,7 @@ from trytond.pyson import Eval
 __all__ = ['GalateaWebSite', 'GalateaUser']
 
 
-class GalateaWebSite:
-    __metaclass__ = PoolMeta
+class GalateaWebSite(metaclass=PoolMeta):
     __name__ = "galatea.website"
     esale_menu = fields.Many2One('esale.catalog.menu', 'Main Menu', required=True,
         help='Main menu of product catalog')
@@ -33,8 +32,7 @@ class GalateaWebSite:
         return 'quantity'
 
 
-class GalateaUser:
-    __metaclass__ = PoolMeta
+class GalateaUser(metaclass=PoolMeta):
     __name__ = "galatea.user"
     invoice_address = fields.Many2One('party.address', 'Invoice Address',
         domain=[('party', '=', Eval('party')), ('invoice', '=', True)],

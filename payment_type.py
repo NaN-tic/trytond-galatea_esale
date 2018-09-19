@@ -8,8 +8,7 @@ from trytond.pyson import Eval
 __all__ = ['PaymentType']
 
 
-class PaymentType:
-    __metaclass__ = PoolMeta
+class PaymentType(metaclass=PoolMeta):
     __name__ = 'account.payment.type'
     esale_payment = fields.Boolean('Virtual Payment')
     esale_code = fields.Char('Code App Payment', states={

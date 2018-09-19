@@ -8,8 +8,7 @@ from trytond.pyson import Eval, Not, Bool, And
 __all__ = ['Sale', 'SaleLine']
 
 
-class Sale:
-    __metaclass__ = PoolMeta
+class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
     galatea_user = fields.Many2One('galatea.user', 'Galatea User',
          readonly=True)
@@ -24,8 +23,7 @@ class Sale:
         return self
 
 
-class SaleLine:
-    __metaclass__ = PoolMeta
+class SaleLine(metaclass=PoolMeta):
     __name__ = 'sale.line'
     sid = fields.Char('Session')
     galatea_user = fields.Many2One('galatea.user', 'Galatea User', readonly=True)
