@@ -1,9 +1,11 @@
 # This file is part galatea_esale module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+from decimal import Decimal
 from trytond.pool import PoolMeta
 from trytond.model import fields
 from trytond.pyson import Eval, Not, Bool, And
+from trytond.transaction import Transaction
 
 __all__ = ['Sale', 'SaleLine']
 
@@ -50,3 +52,27 @@ class SaleLine(metaclass=PoolMeta):
         if self.product:
             return self.product.template.id
         return None
+
+    def on_change_product(self):
+        super(SaleLine, self).on_change_product()
+
+        if not self.product:
+            return
+
+        party = self.party if hasattr(self, 'party') else None
+        if party:
+            # Set taxes before unit_price to have taxes in context of sale price
+            taxes = []
+            pattern = self._get_tax_rule_pattern()
+            for tax in self.product.customer_taxes_used:
+                if party and party.customer_tax_rule:
+                    tax_ids = party.customer_tax_rule.apply(tax, pattern)
+                    if tax_ids:
+                        taxes.extend(tax_ids)
+                    continue
+                taxes.append(tax.id)
+            if party and party.customer_tax_rule:
+                tax_ids = party.customer_tax_rule.apply(None, pattern)
+                if tax_ids:
+                    taxes.extend(tax_ids)
+            self.taxes = taxes
