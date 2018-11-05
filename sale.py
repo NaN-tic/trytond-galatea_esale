@@ -5,7 +5,6 @@ from decimal import Decimal
 from trytond.pool import PoolMeta
 from trytond.model import fields
 from trytond.pyson import Eval, Not, Bool, And
-from trytond.transaction import Transaction
 
 __all__ = ['Sale', 'SaleLine']
 
@@ -67,13 +66,13 @@ class SaleLine:
             taxes = []
             pattern = self._get_tax_rule_pattern()
             for tax in self.product.customer_taxes_used:
-                if party and party.customer_tax_rule:
+                if party.customer_tax_rule:
                     tax_ids = party.customer_tax_rule.apply(tax, pattern)
                     if tax_ids:
                         taxes.extend(tax_ids)
                     continue
                 taxes.append(tax.id)
-            if party and party.customer_tax_rule:
+            if party.customer_tax_rule:
                 tax_ids = party.customer_tax_rule.apply(None, pattern)
                 if tax_ids:
                     taxes.extend(tax_ids)
