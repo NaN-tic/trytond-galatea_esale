@@ -2,9 +2,10 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from decimal import Decimal
-from trytond.pool import PoolMeta
+from trytond.pool import Pool, PoolMeta
 from trytond.model import fields
 from trytond.pyson import Eval, Not, Bool, And
+from trytond.transaction import Transaction
 
 __all__ = ['Sale', 'SaleLine']
 
@@ -17,7 +18,38 @@ class Sale(metaclass=PoolMeta):
     @classmethod
     def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0, payment=None):
         '''Available eSale Carriers'''
-        return [c.carrier for c in shop.esale_carriers]
+        PaymentType = Pool().get('account.payment.type')
+
+        sale = cls()
+        sale.party = party
+        sale.untaxed_amount = untaxed
+        sale.tax_amount = tax
+        sale.total_amount = total
+        if isinstance(payment, int):
+            sale.payment_type = PaymentType(payment)
+        else:
+            sale.payment_type = payment
+
+        context = {}
+        context['record'] = sale # Eval by "carrier formula" require "record"
+        decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
+
+        carriers = []
+        for ecarrier in shop.esale_carriers:
+            carrier = ecarrier.carrier
+            context['carrier'] = carrier
+            with Transaction().set_context(context):
+                carrier_price = carrier.get_sale_price() # return price, currency
+            price = carrier_price[0]
+            price_w_tax = carrier.get_sale_price_w_tax(price, party=party)
+            carrier.fullname = '%s (+%s %s)' % (
+                    carrier.rec_name,
+                    Decimal(decimals % price_w_tax),
+                    shop.currency.code)
+            carrier.price = Decimal(decimals % price)
+            carrier.price_w_tax = Decimal(decimals % price_w_tax)
+            carriers.append(carrier)
+        return carriers
 
     def set_esale_sale(self, data):
         '''Overwrite this method to add more fields in sale object from request.form.data'''
