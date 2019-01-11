@@ -112,9 +112,5 @@ class SaleLine:
 
     @classmethod
     def copy(cls, lines, default=None):
-        new_lines = []
-        for line in lines:
-            if line.shipment_cost != 0:
-                continue
-            new_lines.append(line)
+        new_lines = [x for x in lines if x.shipment_cost is None]
         return super(SaleLine, cls).copy(new_lines, default=default)
