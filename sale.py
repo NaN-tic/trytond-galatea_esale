@@ -23,6 +23,20 @@ class Sale:
         '''Overwrite this method to add more fields in sale object from request.form.data'''
         return self
 
+    def get_esale_lines(self):
+        '''Return sale lines without shipment cost lines'''
+        return [l for l in self.lines if (
+            l.product and l.product.esale_available and (
+                l.shipment_cost is None or l.shipment_cost == 0))]
+
+    def _get_extra_lines(self):
+        """
+        Return extra lines to will be created.
+        This method will be overwritten by other modules.
+
+        """
+        return []
+
 
 class SaleLine:
     __metaclass__ = PoolMeta
