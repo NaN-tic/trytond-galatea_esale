@@ -54,26 +54,28 @@ class GalateaUser(metaclass=PoolMeta):
         Shop = pool.get('sale.shop')
         SaleLine = pool.get('sale.line')
 
-        user = User(user)
+        if user and not isinstance(user, User):
+            user = User(user)
 
         # not filter by shop. Update all current carts
         domain = [
             ('sale', '=', None),
             ]
-        if session: # login user. Filter sid or user
+        if user: # login user. Filter sid or user
             domain.append(['OR',
-                ('sid', '=', session),
+                ('sid', '=', session.sid),
                 ('galatea_user', '=', user),
                 ])
-        else: # anonymous user. Filter user
+        else: # anonymous user. Filter sid
             domain.append(
-                ('sid', '=', session),
+                ('sid', '=', session.sid),
                 )
         lines = SaleLine.search(domain)
 
         context = {}
-        context['customer'] = user.party.id
-        if user.party.sale_price_list:
+        if user:
+            context['customer'] = user.party.id
+        if user and user.party.sale_price_list:
             context['price_list'] = user.party.sale_price_list.id
         else:
             shop = Transaction().context.get('shop')
