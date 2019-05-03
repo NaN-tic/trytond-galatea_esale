@@ -14,12 +14,6 @@ msgctxt "error:product.template:"
 msgid "Thumb \"%(file_name)s\" size is larger than \"%(size)s\"Kb"
 msgstr "El tamany de la miniatura \"%(file_name)s\" és mes gran que \"%(size)s\"Kb"
 
-msgctxt "error:sale.shop:"
-msgid "Functions import/export in Galatea Shops are not necessary"
-msgstr ""
-"Les funcions de importació/exportació a les botigues Galatea no son "
-"necesaris"
-
 msgctxt "field:account.payment.type,esale_code:"
 msgid "Code App Payment"
 msgstr "Codi pagament App"
@@ -237,6 +231,10 @@ msgid ""
 msgstr ""
 "El preu eSale es calculat segons la botiga de les preferencies de l'usuari i"
 " la configuració de la botiga"
+
+msgctxt "model:ir.message,text:msg_not_import_export_method"
+msgid "Not available import/export methods in Galatea"
+msgstr "No està disponible la importació/exportació a Galatea"
 
 msgctxt "selection:galatea.website,esale_stock_qty:"
 msgid "Forecast Quantity"

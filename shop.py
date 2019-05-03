@@ -2,20 +2,14 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from trytond.pool import PoolMeta
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['SaleShop']
 
 
 class SaleShop(metaclass=PoolMeta):
     __name__ = 'sale.shop'
-
-    @classmethod
-    def __setup__(cls):
-        super(SaleShop, cls).__setup__()
-        cls._error_messages.update({
-            'not_import': 'Functions import/export in Galatea Shops are ' \
-            'not necessary',
-        })
 
     @classmethod
     def get_shop_app(cls):
@@ -29,6 +23,7 @@ class SaleShop(metaclass=PoolMeta):
 
     def import_orders_galatea(self, shop):
         self.raise_user_error('not_import')
+        raise UserError(gettext('galatea_esale.msg_not_import_export_method'))
 
     def export_state_galatea(self, shop):
         """Export State Sale whitout app don't available
