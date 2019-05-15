@@ -14,7 +14,7 @@ class SaleShop(metaclass=PoolMeta):
     @classmethod
     def get_shop_app(cls):
         res = super(SaleShop, cls).get_shop_app()
-        res.append(('galatea','Galatea'))
+        res.append(('galatea', 'Galatea'))
         return res
 
     @staticmethod
@@ -22,11 +22,10 @@ class SaleShop(metaclass=PoolMeta):
         return 'galatea'
 
     def import_orders_galatea(self, shop):
-        self.raise_user_error('not_import')
         raise UserError(gettext('galatea_esale.msg_not_import_export_method'))
 
     def export_state_galatea(self, shop):
         """Export State Sale whitout app don't available
         :param shop: Obj
         """
-        self.raise_user_error('not_import')
+        raise UserError(gettext('galatea_esale.msg_not_import_export_method'))
