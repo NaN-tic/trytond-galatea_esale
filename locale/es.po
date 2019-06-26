@@ -150,7 +150,7 @@ msgstr "Ventas sugeridas por tienda"
 
 msgctxt "field:sale.line,galatea_user:"
 msgid "Galatea User"
-msgstr "Galatea Usuario"
+msgstr "Galatea usuario"
 
 msgctxt "field:sale.line,product_id:"
 msgid "Product ID"

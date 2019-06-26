@@ -8,6 +8,11 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="inherit" ref="sale.sale_view_form"/>
             <field name="name">sale_form</field>
         </record>
+        <record model="ir.ui.view" id="sale_view_tree">
+            <field name="model">sale.sale</field>
+            <field name="inherit" ref="sale.sale_view_tree"/>
+            <field name="name">sale_tree</field>
+        </record>
     </data>
     <data depends="sale_pos">
         <record model="ir.ui.view" id="sale_pos_view_form">
