@@ -2,18 +2,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "error:product.template:"
-msgid "\"%(file_name)s\" file mime is not an image (jpg, png or gif)"
-msgstr "El \"%(file_name)s\" no es una imagen (jpg, png or gif)"
-
-msgctxt "error:product.template:"
-msgid "Not know file mime \"%(file_name)s\""
-msgstr "No se conoce el tipo de fichero \"%(file_name)s\""
-
-msgctxt "error:product.template:"
-msgid "Thumb \"%(file_name)s\" size is larger than \"%(size)s\"Kb"
-msgstr "El tamaño de la miniatura \"%(file_name)s\" es más grande que \"%(size)s\"Kb"
-
 msgctxt "field:account.payment.type,esale_code:"
 msgid "Code App Payment"
 msgstr "Código pago App"
@@ -57,10 +45,6 @@ msgstr "Stock"
 msgctxt "field:galatea.website,esale_stock_qty:"
 msgid "Quantity Stock"
 msgstr "Cantidad stock"
-
-msgctxt "field:product.category,website:"
-msgid "Website"
-msgstr "Sitio Web"
 
 msgctxt "field:product.product,add_cart:"
 msgid "Add Cart"
