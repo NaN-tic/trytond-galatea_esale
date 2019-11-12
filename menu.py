@@ -11,7 +11,7 @@ class CatalogMenu(metaclass=PoolMeta):
     __name__ = 'esale.catalog.menu'
     website = fields.Many2One('galatea.website', 'Website')
 
-    @fields.depends('parent', '_parent_parent.website')
+    @fields.depends('_parent_parent.website', 'parent')
     def on_change_with_website(self):
         """Add website from parent"""
         if self.parent and self.parent.website:
