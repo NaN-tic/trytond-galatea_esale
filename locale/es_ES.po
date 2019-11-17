@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -32,6 +32,66 @@ msgctxt "field:esale.catalog.menu,website:"
 msgid "Website"
 msgstr "Sitio web"
 
+msgctxt "field:galatea.esale.rule,active:"
+msgid "Active"
+msgstr "Activo"
+
+msgctxt "field:galatea.esale.rule,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:galatea.esale.rule,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:galatea.esale.rule,formula:"
+msgid "Formula"
+msgstr "Fórmula"
+
+msgctxt "field:galatea.esale.rule,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:galatea.esale.rule,message:"
+msgid "Message"
+msgstr "Mensaje"
+
+msgctxt "field:galatea.esale.rule,payment_type:"
+msgid "Payment type"
+msgstr "Tipo de pago"
+
+msgctxt "field:galatea.esale.rule,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:galatea.esale.rule,sale_invoice_method:"
+msgid "Sale Invoice Method"
+msgstr "Política de facturación"
+
+msgctxt "field:galatea.esale.rule,sale_shipment_method:"
+msgid "Sale Shipment Method"
+msgstr "Política de envío"
+
+msgctxt "field:galatea.esale.rule,sale_state:"
+msgid "Sale State"
+msgstr "Estado de la venta"
+
+msgctxt "field:galatea.esale.rule,sequence:"
+msgid "Sequence"
+msgstr "Secuencia"
+
+msgctxt "field:galatea.esale.rule,website:"
+msgid "Website"
+msgstr "Sitio Web"
+
+msgctxt "field:galatea.esale.rule,write_date:"
+msgid "Write Date"
+msgstr "Fecha de modificación"
+
+msgctxt "field:galatea.esale.rule,write_uid:"
+msgid "Write User"
+msgstr "Usuario de modificación"
+
 msgctxt "field:galatea.user,b2b:"
 msgid "B2B"
 msgstr "B2B"
@@ -48,6 +108,10 @@ msgctxt "field:galatea.website,currency:"
 msgid "Currency"
 msgstr "Moneda"
 
+msgctxt "field:galatea.website,esale_category_menu:"
+msgid "Catalog Category Menu"
+msgstr "Menú categoria catálogo"
+
 msgctxt "field:galatea.website,esale_menu:"
 msgid "Main Menu"
 msgstr "Menú principal"
@@ -59,6 +123,10 @@ msgstr "Stock"
 msgctxt "field:galatea.website,esale_stock_qty:"
 msgid "Quantity Stock"
 msgstr "Cantidad stock"
+
+msgctxt "field:galatea.website,rules:"
+msgid "Rules"
+msgstr "Reglas"
 
 msgctxt "field:product.product,add_cart:"
 msgid "Add Cart"
@@ -120,21 +188,29 @@ msgctxt "field:product.template,esale_slug_langs:"
 msgid "Slug Langs"
 msgstr "Slug idiomas"
 
-msgctxt "field:product.template,esale_thumb:"
-msgid "Thumb"
-msgstr ""
-
-msgctxt "field:product.template,esale_thumb_filename:"
-msgid "File Name"
-msgstr "Nombre fichero"
-
-msgctxt "field:product.template,esale_thumb_path:"
-msgid "Thumb Path"
-msgstr ""
-
 msgctxt "field:product.template,esale_upsells_by_shop:"
 msgid "Upsells by Shop"
 msgstr "Ventas sugeridas por tienda"
+
+msgctxt "field:sale.line,galatea_user:"
+msgid "Galatea User"
+msgstr "Galatea Usuario"
+
+msgctxt "field:sale.line,product_id:"
+msgid "Product ID"
+msgstr "Template ID"
+
+msgctxt "field:sale.line,shop:"
+msgid "Shop"
+msgstr "Tienda"
+
+msgctxt "field:sale.line,sid:"
+msgid "Session"
+msgstr "Sesión"
+
+msgctxt "field:sale.line,template_id:"
+msgid "Template ID"
+msgstr "Template ID"
 
 msgctxt "field:sale.sale,galatea_user:"
 msgid "Galatea User"
@@ -148,6 +224,18 @@ msgctxt "field:sale.shop,warehouses:"
 msgid "Warehouses"
 msgstr "Almacenes"
 
+msgctxt "help:galatea.esale.rule,formula:"
+msgid ""
+"Python expression that will be evaluated. Eg:\n"
+"getattr(record, \"total_amount\") > 0"
+msgstr ""
+"Expresión de Python a evaluar. Por ejemplo:\n"
+"getattr(record, \"total_amount\") > 0"
+
+msgctxt "help:galatea.esale.rule,message:"
+msgid "Message that show when apply the rule"
+msgstr "Mensaje que se mostrará cuando se aplique la regla"
+
 msgctxt "help:galatea.user,b2b:"
 msgid "Allow views or data from B2B customers"
 msgstr "Permite vistas o datos para clientes B2B"
@@ -160,8 +248,12 @@ msgctxt "help:galatea.user,shipment_address:"
 msgid "Default Shipment Address"
 msgstr "Dirección envío por defecto"
 
+msgctxt "help:galatea.website,esale_category_menu:"
+msgid "Main menu of catalog category"
+msgstr "Categoria principal del menú"
+
 msgctxt "help:galatea.website,esale_menu:"
-msgid "Main menu product catalog"
+msgid "Main menu of product catalog"
 msgstr "Menú principal catálogo"
 
 msgctxt "help:galatea.website,esale_stock:"
@@ -194,13 +286,17 @@ msgstr ""
 "El precio de eSale es calculado según la tienda de las preferencias del "
 "usuario y la configuración de la tienda"
 
-msgctxt "help:product.template,esale_thumb:"
-msgid "Thumbnail Product Image"
-msgstr ""
+msgctxt "model:galatea.esale.rule,name:"
+msgid "Galatea eSale Rule"
+msgstr "Regla Galatea eSale"
 
-msgctxt "help:product.template,esale_thumb_filename:"
-msgid "Thumbnail Product File Name"
-msgstr ""
+msgctxt "model:ir.action,name:act_galatea_esale_rule_form"
+msgid "Galatea eSale Rule"
+msgstr "Regla Galatea eSale"
+
+msgctxt "model:ir.ui.menu,name:menu_galatea_esale_rule_form"
+msgid "Galatea eSale Rule"
+msgstr "Regla Galatea eSale"
 
 msgctxt "selection:galatea.website,esale_stock_qty:"
 msgid "Forecast Quantity"
@@ -209,6 +305,14 @@ msgstr "Cantidad prevista"
 msgctxt "selection:galatea.website,esale_stock_qty:"
 msgid "Quantity"
 msgstr "Cantidad"
+
+msgctxt "view:galatea.esale.rule:"
+msgid "Galatea eSale Rule"
+msgstr "Regla Galatea eSale"
+
+msgctxt "view:galatea.esale.rule:"
+msgid "Web Sites"
+msgstr "Sitios web"
 
 msgctxt "view:product.product:"
 msgid "eSale"
