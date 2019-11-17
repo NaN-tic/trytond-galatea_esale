@@ -15,6 +15,7 @@ def register():
         menu.CatalogMenu,
         galatea.GalateaWebSite,
         galatea.GalateaUser,
+        galatea.GalateaEsaleRule,
         payment_type.PaymentType,
         sale.Sale,
         sale.SaleLine,

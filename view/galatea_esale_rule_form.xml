@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- This file is part galatea_esale module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
+<form string="Galatea eSale Rule">
+    <label name="website"/>
+    <field name="website"/>
+    <label name="formula"/>
+    <field name="formula"/>
+    <label name="sale_invoice_method"/>
+    <field name="sale_invoice_method"/>
+    <label name="sale_shipment_method"/>
+    <field name="sale_shipment_method"/>
+    <label name="sale_state"/>
+    <field name="sale_state"/>
+    <label name="payment_type"/>
+    <field name="payment_type"/>
+    <label name="message"/>
+    <field name="message"/>
+    <label name="active"/>
+    <field name="active"/>
+    <label name="sequence"/>
+    <field name="sequence"/>
+</form>
