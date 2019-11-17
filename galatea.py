@@ -186,7 +186,7 @@ class GalateaEsaleRule(ModelSQL, ModelView):
         if self.sale_state:
             record.state = self.sale_state
         if self.message:
-            record.esale_message = self.message
+            record.comment = self.message
         return record
 
     @classmethod
