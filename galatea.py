@@ -196,4 +196,5 @@ class GalateaEsaleRule(ModelSQL, ModelView):
         for rule in website.rules:
             if simple_eval(decistmt(rule.formula), **context):
                 return rule.set_record_rule(record)
+        record.state = 'quotation'
         return record
