@@ -86,6 +86,9 @@ class GalateaUser(metaclass=PoolMeta):
         to_save = []
         with Transaction().set_context(context):
             for line in lines:
+                if not line.party:
+                    line.party = user.party
+
                 prices = Product.get_sale_price([line.product], line.quantity or 0)
                 price = prices[line.product.id]
 
@@ -94,6 +97,9 @@ class GalateaUser(metaclass=PoolMeta):
                     line.update_prices()
                 else:
                     line.unit_price = price
+
+                # recalculate line data (taxes,...)
+                line.on_change_product()
 
                 to_save.append(line)
 
