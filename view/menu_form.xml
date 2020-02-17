@@ -5,5 +5,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
     <xpath expr="/form/field[@name=&quot;rec_name&quot;]" position="after">
         <label name="website"/>
         <field name="website"/>
+        <label name="header_image"/>
+        <field name="header_image"/>
     </xpath>
 </data>
