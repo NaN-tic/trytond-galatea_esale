@@ -11,6 +11,7 @@ class CatalogMenu:
     __metaclass__ = PoolMeta
     __name__ = 'esale.catalog.menu'
     website = fields.Many2One('galatea.website', 'Website')
+    header_image = fields.Many2One('galatea.static.file', 'Header Image')
 
     @fields.depends('parent')
     def on_change_with_website(self):
