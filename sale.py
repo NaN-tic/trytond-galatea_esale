@@ -16,9 +16,13 @@ class Sale(metaclass=PoolMeta):
          readonly=True)
 
     @classmethod
-    def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0, payment=None):
+    def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
+            payment=None, address=None, zip=None, country=None):
         '''Available eSale Carriers'''
-        PaymentType = Pool().get('account.payment.type')
+        pool = Pool()
+        PaymentType = pool.get('account.payment.type')
+        CarrierSelection = pool.get('carrier.selection')
+        Address = pool.get('party.address')
 
         sale = cls()
         sale.party = party
@@ -29,6 +33,7 @@ class Sale(metaclass=PoolMeta):
             sale.payment_type = PaymentType(payment)
         else:
             sale.payment_type = payment
+        sale.carrier = None
 
         context = {}
         context['record'] = sale # Eval by "carrier formula" require "record"
@@ -42,14 +47,39 @@ class Sale(metaclass=PoolMeta):
                 carrier_price = carrier.get_sale_price() # return price, currency
             price = carrier_price[0]
             price_w_tax = carrier.get_sale_price_w_tax(price, party=party)
-            carrier.fullname = '%s (+%s %s)' % (
-                    carrier.rec_name,
-                    Decimal(decimals % price_w_tax),
-                    shop.currency.code)
-            carrier.price = Decimal(decimals % price)
-            carrier.price_w_tax = Decimal(decimals % price_w_tax)
-            carriers.append(carrier)
-        return carriers
+
+            carriers.append({
+                'carrier': carrier,
+                'fullname': '%s (+%s %s)' % (carrier.rec_name,
+                        Decimal(decimals % price_w_tax), shop.currency.code),
+                'price': Decimal(decimals % price),
+                'price_w_tax': Decimal(decimals % price_w_tax),
+                })
+
+        if address or zip:
+            pattern = {}
+            if address and party:
+                addresses = Address.search([
+                    ('party', '=', party),
+                    ('id', '=', address),
+                    ], limit=1)
+                if addresses:
+                    address, = addresses
+                    zip = address.zip
+                    country = address.country.id if address.country else None
+            if zip:
+                pattern['shipment_zip'] = zip
+            if country:
+                pattern['to_country'] = country
+
+            zip_carriers = CarrierSelection.get_carriers(pattern)
+            if zip_carriers:
+                for c in carriers:
+                    if c['carrier'] not in zip_carriers:
+                        carriers.remove(c)
+
+        # sort carriers by price field
+        return sorted(carriers, key=lambda k: k['price'])
 
     def set_esale_sale(self, data):
         '''Overwrite this method to add more fields in sale object from request.form.data'''
