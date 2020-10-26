@@ -56,7 +56,7 @@ class Sale(metaclass=PoolMeta):
                 'price_w_tax': Decimal(decimals % price_w_tax),
                 })
 
-        if address or zip:
+        if address or zip or country:
             pattern = {}
             if address and party:
                 addresses = Address.search([
@@ -74,7 +74,7 @@ class Sale(metaclass=PoolMeta):
 
             zip_carriers = CarrierSelection.get_carriers(pattern)
             if zip_carriers:
-                for c in carriers:
+                for c in carriers[:]:
                     if c['carrier'] not in zip_carriers:
                         carriers.remove(c)
 
