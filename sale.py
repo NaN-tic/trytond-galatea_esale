@@ -17,7 +17,7 @@ class Sale(metaclass=PoolMeta):
 
     @classmethod
     def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
-            payment=None, address=None, zip=None, country=None):
+            payment=None, address_id=None, zip=None, country=None):
         '''Available eSale Carriers'''
         pool = Pool()
         PaymentType = pool.get('account.payment.type')
@@ -56,12 +56,12 @@ class Sale(metaclass=PoolMeta):
                 'price_w_tax': Decimal(decimals % price_w_tax),
                 })
 
-        if address or zip or country:
+        if address_id or zip or country:
             pattern = {}
-            if address and party:
+            if address_id and party:
                 addresses = Address.search([
                     ('party', '=', party),
-                    ('id', '=', address),
+                    ('id', '=', address_id),
                     ], limit=1)
                 if addresses:
                     address, = addresses
