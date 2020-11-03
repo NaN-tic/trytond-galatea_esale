@@ -52,25 +52,11 @@ class GalateaUser(metaclass=PoolMeta):
         User = pool.get('galatea.user')
         Product = pool.get('product.product')
         Shop = pool.get('sale.shop')
+        Sale = pool.get('sale.sale')
         SaleLine = pool.get('sale.line')
 
         if user and not isinstance(user, User):
             user = User(user)
-
-        # not filter by shop. Update all current carts
-        domain = [
-            ('sale', '=', None),
-            ]
-        if user: # login user. Filter sid or user
-            domain.append(['OR',
-                ('sid', '=', session.sid),
-                ('galatea_user', '=', user),
-                ])
-        else: # anonymous user. Filter sid
-            domain.append(
-                ('sid', '=', session.sid),
-                )
-        lines = SaleLine.search(domain)
 
         context = {}
         if user:
@@ -84,8 +70,31 @@ class GalateaUser(metaclass=PoolMeta):
                 context['price_list'] = shop.price_list.id
 
         to_save = []
-        with Transaction().set_context(context):
+        with Transaction().set_context(**context):
+            default_values = Sale.default_get(Sale._fields.keys(),
+                with_rec_name=False)
+            sale = Sale(**default_values)
+            sale.party = user.party
+
+            # not filter by shop. Update all current carts
+            domain = [
+                ('sale', '=', None),
+                ]
+            if user: # login user. Filter sid or user
+                domain.append(['OR',
+                    ('sid', '=', session.sid),
+                    ('galatea_user', '=', user),
+                    ])
+            else: # anonymous user. Filter sid
+                domain.append(
+                    ('sid', '=', session.sid),
+                    )
+            lines = SaleLine.search(domain)
+
             for line in lines:
+                # sure reload the product according to context (taxes)...
+                line.product = Product(line.product.id)
+                line.sale = sale
                 if not line.party:
                     line.party = user.party
 
@@ -100,7 +109,8 @@ class GalateaUser(metaclass=PoolMeta):
 
                 # recalculate line data (taxes,...)
                 line.on_change_product()
-
+                # set sale to None
+                line.sale = None
                 to_save.append(line)
 
         if to_save:
