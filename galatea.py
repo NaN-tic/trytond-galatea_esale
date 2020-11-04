@@ -75,6 +75,7 @@ class GalateaUser(metaclass=PoolMeta):
                 with_rec_name=False)
             sale = Sale(**default_values)
             sale.party = user.party
+            sale.price_list = context.get('price_list', None)
 
             # not filter by shop. Update all current carts
             domain = [
@@ -93,13 +94,16 @@ class GalateaUser(metaclass=PoolMeta):
 
             for line in lines:
                 # sure reload the product according to context (taxes)...
-                line.product = Product(line.product.id)
+                product = Product(line.product.id)
+                line.product = product
                 line.sale = sale
                 if not line.party:
                     line.party = user.party
 
-                prices = Product.get_sale_price([line.product], line.quantity or 0)
-                price = prices[line.product.id]
+                prices = Product.get_sale_price([product], line.quantity or 0)
+                price = prices.get(product.id)
+                if not price:
+                    continue
 
                 if hasattr(SaleLine, 'gross_unit_price'):
                     line.gross_unit_price = price
