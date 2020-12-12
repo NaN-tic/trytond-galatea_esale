@@ -29,10 +29,10 @@ class Sale(metaclass=PoolMeta):
         sale.untaxed_amount = untaxed
         sale.tax_amount = tax
         sale.total_amount = total
-        if isinstance(payment, int):
-            sale.payment_type = PaymentType(payment)
-        else:
-            sale.payment_type = payment
+        sale.payment_type = (PaymentType(payment)
+            if isinstance(payment, int) else payment)
+        sale.shipment_address = (Address(address_id)
+            if isinstance(address_id, int) else address_id)
         sale.carrier = None
 
         context = {}
