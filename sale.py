@@ -68,7 +68,7 @@ class Sale(metaclass=PoolMeta):
                     zip = address.postal_code
                     country = address.country.id if address.country else None
             if zip:
-                pattern['shipment_zip'] = zip
+                pattern['shipment_postal_code'] = zip
             if country:
                 pattern['to_country'] = country
 
