@@ -17,7 +17,7 @@ class Sale(metaclass=PoolMeta):
 
     @classmethod
     def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
-            payment=None, address_id=None, zip=None, country=None):
+            payment=None, address_id=None, postal_code=None, country=None):
         '''Available eSale Carriers'''
         pool = Pool()
         PaymentType = pool.get('account.payment.type')
@@ -56,7 +56,7 @@ class Sale(metaclass=PoolMeta):
                 'price_w_tax': Decimal(decimals % price_w_tax),
                 })
 
-        if address_id or zip or country:
+        if address_id or postal_code or country:
             pattern = {}
             if address_id and party:
                 addresses = Address.search([
@@ -65,17 +65,17 @@ class Sale(metaclass=PoolMeta):
                     ], limit=1)
                 if addresses:
                     address, = addresses
-                    zip = address.postal_code
+                    postal_code = address.postal_code
                     country = address.country.id if address.country else None
-            if zip:
-                pattern['shipment_postal_code'] = zip
+            if postal_code:
+                pattern['shipment_postal_code'] = postal_code
             if country:
                 pattern['to_country'] = country
 
-            zip_carriers = CarrierSelection.get_carriers(pattern)
-            if zip_carriers:
+            postal_code_carriers = CarrierSelection.get_carriers(pattern)
+            if postal_code_carriers:
                 for c in carriers[:]:
-                    if c['carrier'] not in zip_carriers:
+                    if c['carrier'] not in postal_code_carriers:
                         carriers.remove(c)
 
         # sort carriers by price field
