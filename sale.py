@@ -26,23 +26,27 @@ class Sale(metaclass=PoolMeta):
 
         sale = cls()
         sale.party = party
-        sale.untaxed_amount = untaxed
-        sale.tax_amount = tax
-        sale.total_amount = total
         sale.payment_type = (PaymentType(payment)
             if isinstance(payment, int) else payment)
         sale.shipment_address = (Address(address_id)
             if isinstance(address_id, int) else address_id)
         sale.carrier = None
 
+        sale_vals = sale._save_values
+        sale_vals['untaxed_amount'] = untaxed
+        sale_vals['tax_amount'] = tax
+        sale_vals['total_amount'] = total
+
         context = {}
-        context['record'] = sale # Eval by "carrier formula" require "record"
+        context['record'] = sale_vals # Eval by "carrier formula", require "record"
+        context['record_model'] = 'sale.sale'
+
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
         carriers = []
         for ecarrier in shop.esale_carriers:
             carrier = ecarrier.carrier
-            context['carrier'] = carrier
+            context['carrier'] = str(carrier)
             with Transaction().set_context(context):
                 carrier_price = carrier.get_sale_price() # return price, currency
             price = carrier_price[0]
