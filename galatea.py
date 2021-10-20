@@ -22,10 +22,19 @@ class GalateaWebSite(metaclass=PoolMeta):
             'invisible': ~Eval('esale_stock', True),
         },
         help='Manage Stock is Product Quantity or Product Forecast Quantity')
-    esale_category_menu = fields.Many2One('product.category',
-        'Catalog Category Menu', domain=[
-            ('esale_active', '=', True),
-        ], help='Main menu of catalog category')
+
+    @classmethod
+    def __setup__(cls):
+        Category = Pool().get('product.category')
+
+        super(GalateaWebSite, cls).__setup__()
+
+        if hasattr(Category, 'esale_active'):
+            cls.esale_category_menu = fields.Many2One('product.category',
+                'Catalog Category Menu', domain=[
+                    ('esale_active', '=', True),
+                ], help='Main menu of catalog category')
+
 
     @staticmethod
     def default_esale_stock_qty():

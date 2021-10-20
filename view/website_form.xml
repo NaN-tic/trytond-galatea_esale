@@ -3,11 +3,9 @@
 The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license types. -->
 <data>
-    <xpath expr="/form/notebook/page[@id=&quot;configuration&quot;]" position="inside">
+    <xpath expr="/form/notebook/page[@id='configuration']" position="inside">
         <label name="esale_menu"/>
         <field name="esale_menu"/>
-        <label name="esale_category_menu"/>
-        <field name="esale_category_menu"/>
         <label name="esale_stock"/>
         <field name="esale_stock"/>
         <label name="esale_stock_qty"/>
