@@ -16,6 +16,14 @@ class Sale(metaclass=PoolMeta):
          readonly=True)
 
     @classmethod
+    def galatea_domain(cls):
+        return []
+
+    @classmethod
+    def galatea_admin_domain(cls):
+        return []
+
+    @classmethod
     def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
             payment=None, address_id=None, postal_code=None, country=None):
         '''Available eSale Carriers'''
