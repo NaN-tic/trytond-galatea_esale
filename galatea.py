@@ -76,7 +76,8 @@ class GalateaUser(metaclass=PoolMeta):
             shop = Transaction().context.get('shop')
             if shop:
                 shop = Shop(shop)
-                context['price_list'] = shop.price_list.id
+                context['price_list'] = (shop.price_list.id
+                    if shop.price_list else None)
 
         to_save = []
         with Transaction().set_context(**context):
