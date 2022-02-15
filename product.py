@@ -37,6 +37,21 @@ class Template(metaclass=PoolMeta):
             },
         depends=['active', 'esale_available'])
 
+    @classmethod
+    def __setup__(cls):
+        super(Template, cls).__setup__()
+
+        if not cls.account_category.states:
+            cls.account_category.states = {}
+        new_required = Eval('esale_available')
+        required = cls.account_category.states.get('required')
+        if required:
+            new_required = new_required | required
+        cls.account_category.states.update({
+                'required': new_required,
+                })
+        cls.account_category.depends += ['esale_available']
+
     def get_esale_menus_by_website(self, name):
         '''Get all menus by website (context)'''
         menus = [] # ids
