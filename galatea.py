@@ -100,20 +100,21 @@ class GalateaUser(metaclass=PoolMeta):
                 line.sale = sale
                 if not line.party:
                     line.party = user.party
+                line.galatea_user = user
+                line.sid = None
 
                 prices = Product.get_sale_price([product], line.quantity or 0)
                 price = prices.get(product.id)
-                if not price:
-                    continue
+                if price:
+                    if hasattr(SaleLine, 'gross_unit_price'):
+                        line.gross_unit_price = price
+                        line.update_prices()
+                    else:
+                        line.unit_price = price
 
-                if hasattr(SaleLine, 'gross_unit_price'):
-                    line.gross_unit_price = price
-                    line.update_prices()
-                else:
-                    line.unit_price = price
+                    # recalculate line data (taxes,...)
+                    line.on_change_product()
 
-                # recalculate line data (taxes,...)
-                line.on_change_product()
                 # set sale to None
                 line.sale = None
                 to_save.append(line)
