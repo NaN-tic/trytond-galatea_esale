@@ -33,7 +33,10 @@ class GalateaWebSite(metaclass=PoolMeta):
             cls.esale_category_menu = fields.Many2One('product.category',
                 'Catalog Category Menu', domain=[
                     ('esale_active', '=', True),
-                ], help='Main menu of catalog category')
+                ], context={
+                    'company': Eval('company'),
+                }, depends=['company'],
+                help='Main menu of catalog category')
 
 
     @staticmethod

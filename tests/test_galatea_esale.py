@@ -4,9 +4,10 @@
 import unittest
 import trytond.tests.test_tryton
 from trytond.tests.test_tryton import ModuleTestCase
+from trytond.modules.company.tests import CompanyTestMixin
 
 
-class GalateaEsaleTestCase(ModuleTestCase):
+class GalateaEsaleTestCase(CompanyTestMixin, ModuleTestCase):
     'Test Galatea Esale module'
     module = 'galatea_esale'
 
