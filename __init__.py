@@ -5,7 +5,6 @@ from trytond.pool import Pool
 from . import galatea
 from . import menu
 from . import sale
-from . import shop
 from . import product
 from . import payment_type
 
@@ -18,7 +17,6 @@ def register():
         payment_type.PaymentType,
         sale.Sale,
         sale.SaleLine,
-        shop.SaleShop,
         product.Category,
         product.Template,
         product.Product,
