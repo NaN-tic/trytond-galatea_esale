@@ -18,6 +18,7 @@ def register():
         sale.Sale,
         sale.SaleLine,
         product.Category,
+        product.ProductCategoryGalateaWebsite,
         product.Template,
         product.Product,
         module='galatea_esale', type_='model')

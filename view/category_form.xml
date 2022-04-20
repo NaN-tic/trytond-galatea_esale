@@ -5,7 +5,7 @@ this repository contains the full copyright notices and license terms. -->
   <xpath
       expr="/form/notebook/page[@id='esale']/notebook/page[@id='esale-general']/field[@name='include_in_menu']"
       position="after">
-          <label name="website"/>
-          <field name="website"/>
+          <separator name="websites" colspan="6"/>
+          <field name="websites" colspan="6"/>
   </xpath>
 </data>

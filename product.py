@@ -1,13 +1,13 @@
 # This file is part galatea_esale module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
-from trytond.model import fields
-from trytond.pool import PoolMeta
+from trytond.model import fields, ModelSQL
+from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.config import config as config_
 
-__all__ = ['Category', 'Template', 'Product']
+__all__ = ['Category', 'ProductCategoryGalateaWebsite', 'Template', 'Product']
 
 DIGITS = config_.getint('product', 'price_decimal', default=4)
 
@@ -19,7 +19,44 @@ class Category(metaclass=PoolMeta):
     def __setup__(cls):
         super(Category, cls).__setup__()
         if hasattr(cls, 'esale_active'):
-            cls.website = fields.Many2One('galatea.website', 'Website')
+            cls.websites = fields.Many2Many('product.category-galatea.website',
+                'category', 'website', "Websites")
+
+    @classmethod
+    def __register__(cls, module_name):
+        table = cls.__table_handler__(module_name)
+
+        has_website = False
+        if hasattr(cls, 'esale_active'):
+            if table.column_exist('website'):
+                has_website = True
+
+        super(Category, cls).__register__(module_name)
+        table = cls.__table_handler__(module_name)
+
+        if has_website:
+            Website = Pool().get('galatea.website')
+
+            websites = Website.search([])
+
+            query = 'select id from product_category where website is not null'
+            cursor = Transaction().connection.cursor()
+            cursor.execute(query)
+            ids = [id[0] for id in cursor.fetchall()]
+            if ids and websites:
+                categories = cls.browse(ids)
+                cls.write(categories, {'websites': [
+                    ('add', [w.id for w in websites])]})
+            table.drop_column('website')
+
+
+class ProductCategoryGalateaWebsite(ModelSQL):
+    'Product Category - Galatea Website'
+    __name__ = 'product.category-galatea.website'
+    category = fields.Many2One('product.category', "Category",
+        ondelete='CASCADE', required=True, select=True)
+    website = fields.Many2One('galatea.website', "Website",
+        ondelete='CASCADE', required=True, select=True)
 
 
 class Template(metaclass=PoolMeta):
