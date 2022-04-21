@@ -63,9 +63,6 @@ class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
     esale_new = fields.Boolean('New', help='Icon New product')
     esale_hot = fields.Boolean('Hot', help='Icon Hot product')
-    esale_menus_by_website = fields.Function(fields.Many2Many(
-        'esale.catalog.menu', None, None, 'Menus by Website'),
-        'get_esale_menus_by_website')
     esale_global_price = fields.Numeric('eSale Global Price',
         digits=(16, DIGITS),
         states={
@@ -74,27 +71,18 @@ class Template(metaclass=PoolMeta):
             },
         depends=['active', 'esale_available'])
 
-    def get_esale_menus_by_website(self, name):
-        '''Get all menus by website (context)'''
-        menus = [] # ids
-        if not self.esale_menus:
-            return menus
-
-        website = None
-        if Transaction().context.get('website'):
-            website = Transaction().context.get('website')
-        if not website:
-            return menus
-
-        for menu in self.esale_menus:
-            if menu.website.id == website:
-                menus.append(menu.id)
-        return menus
-
     @fields.depends('list_price')
     def on_change_with_esale_global_price(self, name=None):
         if self.list_price:
             return self.list_price
+
+    def esale_menus_by_website(self, website):
+        Category = Pool().get('product.category')
+
+        if hasattr(Category, 'esale_active'):
+            return [cat for cat in self.categories if website in cat.websites]
+        else:
+            return [menu for menu in self.esale_menus if website == menu.website]
 
 
 class Product(metaclass=PoolMeta):
