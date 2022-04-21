@@ -1,6 +1,7 @@
 # This file is part galatea_esale module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+from trytond import backend
 from trytond.model import fields, ModelSQL
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
@@ -24,6 +25,7 @@ class Category(metaclass=PoolMeta):
 
     @classmethod
     def __register__(cls, module_name):
+        TableHandler = backend.get('TableHandler')
         table = cls.__table_handler__(module_name)
 
         has_website = False
@@ -34,7 +36,10 @@ class Category(metaclass=PoolMeta):
         super(Category, cls).__register__(module_name)
         table = cls.__table_handler__(module_name)
 
-        if has_website:
+        exist = TableHandler.table_exist('product_category-galatea_website')
+
+        # upgrade data when do the second --all
+        if has_website and exist:
             Website = Pool().get('galatea.website')
 
             websites = Website.search([])
