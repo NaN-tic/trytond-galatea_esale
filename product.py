@@ -44,8 +44,11 @@ class Category(metaclass=PoolMeta):
 
             websites = Website.search([])
 
-            query = 'select id from product_category where website is not null'
             cursor = Transaction().connection.cursor()
+            product_category = cls.table()
+
+            query = product_category.select(product_category.id,
+                where=(product_category.website == None))
             cursor.execute(query)
             ids = [id[0] for id in cursor.fetchall()]
             if ids and websites:
