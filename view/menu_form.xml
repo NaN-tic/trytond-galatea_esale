@@ -2,7 +2,7 @@
 <!-- This file is part galatea_esale module for Tryton.
 The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
 <data>
-    <xpath expr="/form/field[@name=&quot;rec_name&quot;]" position="after">
+    <xpath expr="/form/field[@name='rec_name']" position="after">
         <label name="website"/>
         <field name="website"/>
         <label name="header_image"/>

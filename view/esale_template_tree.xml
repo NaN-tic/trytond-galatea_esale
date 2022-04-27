@@ -2,7 +2,7 @@
 <!-- This file is part galatea_esale module for Tryton.
 The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
 <data>
-    <xpath expr="/tree/field[@name=&quot;esale_sequence&quot;]" position="after">
+    <xpath expr="/tree/field[@name='esale_sequence']" position="after">
         <field name="esale_new"/>
         <field name="esale_hot"/>
     </xpath>

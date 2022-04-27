@@ -3,7 +3,7 @@
 The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license types. -->
 <data>
-    <xpath expr="/form/field[@name=&quot;kind&quot;]" position="after">
+    <xpath expr="/form/field[@name='kind']" position="after">
         <label name="esale_payment"/>
         <field name="esale_payment"/>
         <label name="esale_code"/>
