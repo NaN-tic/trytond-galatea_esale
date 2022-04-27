@@ -2,7 +2,7 @@
 <!-- This file is part galatea_esale module for Tryton.
 The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
 <data>
-    <xpath expr="/form/notebook/page[@id='esale']/field[@name='esale_coupon']" position="after">
+    <xpath expr="/form/notebook/page[@id='other']/field[@name='esale']" position="after">
         <label name="galatea_user"/>
         <field name="galatea_user"/>
     </xpath>
