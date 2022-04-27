@@ -1,13 +1,14 @@
 # This file is part galatea_esale module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
-from trytond.model import fields
-from trytond.pool import PoolMeta
+from trytond import backend
+from trytond.model import fields, ModelSQL
+from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.config import config as config_
 
-__all__ = ['Category', 'Template', 'Product']
+__all__ = ['Category', 'ProductCategoryGalateaWebsite', 'Template', 'Product']
 
 DIGITS = config_.getint('product', 'price_decimal', default=4)
 
@@ -19,16 +20,57 @@ class Category(metaclass=PoolMeta):
     def __setup__(cls):
         super(Category, cls).__setup__()
         if hasattr(cls, 'esale_active'):
-            cls.website = fields.Many2One('galatea.website', 'Website')
+            cls.websites = fields.Many2Many('product.category-galatea.website',
+                'category', 'website', "Websites")
+
+    @classmethod
+    def __register__(cls, module_name):
+        TableHandler = backend.get('TableHandler')
+        table = cls.__table_handler__(module_name)
+
+        has_website = False
+        if hasattr(cls, 'esale_active'):
+            if table.column_exist('website'):
+                has_website = True
+
+        super(Category, cls).__register__(module_name)
+        table = cls.__table_handler__(module_name)
+
+        exist = TableHandler.table_exist('product_category-galatea_website')
+
+        # upgrade data when do the second --all
+        if has_website and exist:
+            Website = Pool().get('galatea.website')
+
+            websites = Website.search([])
+
+            cursor = Transaction().connection.cursor()
+            product_category = cls.table()
+
+            query = product_category.select(product_category.id,
+                where=(product_category.website == None))
+            cursor.execute(query)
+            ids = [id[0] for id in cursor.fetchall()]
+            if ids and websites:
+                categories = cls.browse(ids)
+                cls.write(categories, {'websites': [
+                    ('add', [w.id for w in websites])]})
+            table.drop_column('website')
+
+
+class ProductCategoryGalateaWebsite(ModelSQL):
+    'Product Category - Galatea Website'
+    __name__ = 'product.category-galatea.website'
+    category = fields.Many2One('product.category', "Category",
+        ondelete='CASCADE', required=True, select=True)
+    website = fields.Many2One('galatea.website', "Website",
+        ondelete='CASCADE', required=True, select=True)
 
 
 class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
     esale_new = fields.Boolean('New', help='Icon New product')
     esale_hot = fields.Boolean('Hot', help='Icon Hot product')
-    esale_menus_by_website = fields.Function(fields.Many2Many(
-        'esale.catalog.menu', None, None, 'Menus by Website'),
-        'get_esale_menus_by_website')
     esale_global_price = fields.Numeric('eSale Global Price',
         digits=(16, DIGITS),
         states={
@@ -37,27 +79,18 @@ class Template(metaclass=PoolMeta):
             },
         depends=['active', 'esale_available'])
 
-    def get_esale_menus_by_website(self, name):
-        '''Get all menus by website (context)'''
-        menus = [] # ids
-        if not self.esale_menus:
-            return menus
-
-        website = None
-        if Transaction().context.get('website'):
-            website = Transaction().context.get('website')
-        if not website:
-            return menus
-
-        for menu in self.esale_menus:
-            if menu.website.id == website:
-                menus.append(menu.id)
-        return menus
-
     @fields.depends('list_price')
     def on_change_with_esale_global_price(self, name=None):
         if self.list_price:
             return self.list_price
+
+    def esale_menus_by_website(self, website):
+        Category = Pool().get('product.category')
+
+        if hasattr(Category, 'esale_active'):
+            return [cat for cat in self.categories if website in cat.websites]
+        else:
+            return [menu for menu in self.esale_menus if website == menu.website]
 
 
 class Product(metaclass=PoolMeta):
