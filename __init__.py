@@ -17,8 +17,8 @@ def register():
         payment_type.PaymentType,
         sale.Sale,
         sale.SaleLine,
-        product.Category,
         product.ProductCategoryGalateaWebsite,
+        product.Category,
         product.Template,
         product.Product,
         module='galatea_esale', type_='model')
