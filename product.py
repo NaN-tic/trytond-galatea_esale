@@ -44,7 +44,7 @@ class Category(metaclass=PoolMeta):
             websites = Website.search([])
 
             cursor = Transaction().connection.cursor()
-            product_category = cls.table()
+            product_category = cls._table
 
             query = product_category.select(product_category.id,
                 where=(product_category.website == None))
