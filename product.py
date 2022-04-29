@@ -102,9 +102,11 @@ class Template(metaclass=PoolMeta):
         Category = Pool().get('product.category')
 
         if hasattr(Category, 'esale_active'):
-            return [cat for cat in self.categories if website in cat.websites]
+            return [cat for cat in self.categories
+                if website in cat.websites and cat.esale_active == True]
         else:
-            return [menu for menu in self.esale_menus if website == menu.website]
+            return [menu for menu in self.esale_menus
+                if website == menu.website and menu.active == True]
 
 
 class Product(metaclass=PoolMeta):
