@@ -44,11 +44,11 @@ class Category(metaclass=PoolMeta):
             websites = Website.search([])
 
             cursor = Transaction().connection.cursor()
-            product_category = cls._table
+            product_category = cls.__table__()
 
             query = product_category.select(product_category.id,
                 where=(product_category.website == None))
-            cursor.execute(query)
+            cursor.execute(*query)
             ids = [id[0] for id in cursor.fetchall()]
             if ids and websites:
                 categories = cls.browse(ids)
