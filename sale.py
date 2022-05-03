@@ -126,7 +126,7 @@ class SaleLine(metaclass=PoolMeta):
     def __setup__(cls):
         super(SaleLine, cls).__setup__()
         cls.party.states['required'] = And((Not(Bool(Eval('sid')))), cls.party.states['required'])
-        cls.party.add('sid')
+        cls.party.depends.add('sid')
 
     def get_product_id(self, name):
         '''Return product ID'''
