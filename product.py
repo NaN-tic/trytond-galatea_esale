@@ -91,7 +91,7 @@ class Template(metaclass=PoolMeta):
         cls.account_category.states.update({
                 'required': new_required,
                 })
-        cls.account_category.depends += ['esale_available']
+        cls.account_category.depends |= {'esale_available'}
 
     @fields.depends('list_price')
     def on_change_with_esale_global_price(self, name=None):
