@@ -143,26 +143,12 @@ class SaleLine(metaclass=PoolMeta):
     def on_change_product(self):
         super(SaleLine, self).on_change_product()
 
-        if not self.product:
+        if not self.product or self.taxes:
             return
 
         party = self.party if hasattr(self, 'party') else None
-        if party:
-            # Set taxes before unit_price to have taxes in context of sale price
-            taxes = []
-            pattern = self._get_tax_rule_pattern()
-            for tax in self.product.customer_taxes_used:
-                if party.customer_tax_rule:
-                    tax_ids = party.customer_tax_rule.apply(tax, pattern)
-                    if tax_ids:
-                        taxes.extend(tax_ids)
-                    continue
-                taxes.append(tax.id)
-            if party.customer_tax_rule:
-                tax_ids = party.customer_tax_rule.apply(None, pattern)
-                if tax_ids:
-                    taxes.extend(tax_ids)
-            self.taxes = taxes
+        # Set taxes before unit_price to have taxes in context of sale price
+        self.taxes = self.compute_taxes(party)
 
     @classmethod
     def copy(cls, lines, default=None):
