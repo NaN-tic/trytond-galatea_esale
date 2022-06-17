@@ -16,11 +16,11 @@ class Sale(metaclass=PoolMeta):
          readonly=True)
 
     @classmethod
-    def galatea_domain(cls):
+    def galatea_domain(cls, session):
         return []
 
     @classmethod
-    def galatea_admin_domain(cls):
+    def galatea_admin_domain(cls, session):
         return []
 
     @classmethod
