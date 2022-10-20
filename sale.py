@@ -57,7 +57,7 @@ class Sale(metaclass=PoolMeta):
             context['carrier'] = str(carrier)
             with Transaction().set_context(context):
                 carrier_price = carrier.get_sale_price() # return price, currency
-            price = carrier_price[0]
+            price = carrier_price[0] or Decimal('0.0')
             price_w_tax = carrier.get_sale_price_w_tax(price, party=party)
 
             carriers.append({
