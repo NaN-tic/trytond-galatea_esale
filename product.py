@@ -61,9 +61,9 @@ class ProductCategoryGalateaWebsite(ModelSQL):
     'Product Category - Galatea Website'
     __name__ = 'product.category-galatea.website'
     category = fields.Many2One('product.category', "Category",
-        ondelete='CASCADE', required=True, select=True)
+        ondelete='CASCADE', required=True)
     website = fields.Many2One('galatea.website', "Website",
-        ondelete='CASCADE', required=True, select=True)
+        ondelete='CASCADE', required=True)
 
 
 class Template(metaclass=PoolMeta):
