@@ -47,13 +47,31 @@ class GalateaWebSite(metaclass=PoolMeta):
 class GalateaUser(metaclass=PoolMeta):
     __name__ = "galatea.user"
     invoice_address = fields.Many2One('party.address', 'Invoice Address',
-        domain=[('party', '=', Eval('party')), ('invoice', '=', True)],
-        depends=['party'], help='Default Invoice Address')
+        domain=[
+            ('party', '=', Eval('party')),
+            ('invoice', '=', True),
+        ], states={
+            'required': ~Eval('display_invoice_address', True),
+        }, depends=['party', 'display_invoice_address'], help='Default Invoice Address')
+    display_invoice_address = fields.Boolean('Display All Invoice Address')
     shipment_address = fields.Many2One('party.address', 'Shipment Address',
-        domain=[('party', '=', Eval('party')), ('delivery', '=', True)],
-        depends=['party'], help='Default Shipment Address')
+        domain=[
+            ('party', '=', Eval('party')),
+            ('delivery', '=', True),
+        ], states={
+            'required': ~Eval('display_shipment_address', True),
+        }, depends=['party'], help='Default Shipment Address')
+    display_shipment_address = fields.Boolean('Display All Shipment Address')
     b2b = fields.Boolean('B2B',
         help='Allow views or data from B2B customers')
+
+    @staticmethod
+    def default_display_invoice_address():
+        return True
+
+    @staticmethod
+    def default_display_shipment_address():
+        return True
 
     @classmethod
     def signal_login(cls, user, session=None, website=None):
