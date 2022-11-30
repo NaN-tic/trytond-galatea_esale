@@ -18,6 +18,14 @@ msgctxt "field:galatea.user,b2b:"
 msgid "B2B"
 msgstr "B2B"
 
+msgctxt "field:galatea.user,display_invoice_address:"
+msgid "Display All Invoice Address"
+msgstr "Llista totes les adreces de facturació"
+
+msgctxt "field:galatea.user,display_shipment_address:"
+msgid "Display All Shipment Address"
+msgstr "Llista totes les adreces d'enviament"
+
 msgctxt "field:galatea.user,invoice_address:"
 msgid "Invoice Address"
 msgstr "Adreça de facturació"

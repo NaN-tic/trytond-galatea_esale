@@ -6,8 +6,12 @@ copyright notices and license types. -->
     <xpath expr="/form/field[@name='timezone']" position="after">
         <label name="invoice_address"/>
         <field name="invoice_address"/>
+        <label name="display_invoice_address"/>
+        <field name="display_invoice_address"/>
         <label name="shipment_address"/>
         <field name="shipment_address"/>
+        <label name="display_shipment_address"/>
+        <field name="display_shipment_address"/>
         <label name="b2b"/>
         <field name="b2b"/>
     </xpath>
