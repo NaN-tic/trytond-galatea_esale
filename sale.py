@@ -41,7 +41,7 @@ class Sale(metaclass=PoolMeta):
                 if isinstance(address_id, int) else address_id)
         else:
             shipment_address = Address()
-            shipment_address.zip = zip
+            shipment_address.postal_code = postal_code
             shipment_address.country = country
             sale.shipment_address = shipment_address
         sale.carrier = None
