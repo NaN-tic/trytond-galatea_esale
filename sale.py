@@ -39,10 +39,17 @@ class Sale(metaclass=PoolMeta):
         sale.total_amount = total
         sale.payment_type = (PaymentType(payment)
             if isinstance(payment, int) else payment)
-        sale.shipment_address = (Address(address_id)
-            if isinstance(address_id, int) else address_id)
+        if address_id:
+            sale.shipment_address = (Address(address_id)
+                if isinstance(address_id, int) else address_id)
+        else:
+            shipment_address = Address()
+            shipment_address.zip = zip
+            shipment_address.country = country
+            sale.shipment_address = shipment_address
         sale.carrier = None
 
+        available_carriers_ids = sale.on_change_with_available_carriers()
         context = {}
         context['record'] = sale # Eval by "carrier formula" require "record"
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
@@ -50,6 +57,8 @@ class Sale(metaclass=PoolMeta):
         carriers = []
         for ecarrier in shop.esale_carriers:
             carrier = ecarrier.carrier
+            if carrier.id not in available_carriers_ids:
+                continue
             context['carrier'] = carrier
             with Transaction().set_context(context):
                 carrier_price = carrier.get_sale_price() # return price, currency
