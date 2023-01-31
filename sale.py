@@ -50,7 +50,7 @@ class Sale(metaclass=PoolMeta):
         available_carriers_ids = sale.on_change_with_available_carriers()
 
         sale_vals = {}
-        sale_vals['party'] = party.id
+        sale_vals['party'] = party.id if party else None
         sale_vals['payment_type'] = payment
         sale_vals['carrier'] = None
         sale_vals['shipment_address'] = address_id
