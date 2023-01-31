@@ -51,18 +51,10 @@ class Sale(metaclass=PoolMeta):
         sale.carrier = None
 
         available_carriers_ids = sale.on_change_with_available_carriers()
-
-        sale_vals = {}
-        sale_vals['party'] = party.id
-        sale_vals['payment_type'] = payment
-        sale_vals['carrier'] = None
-        sale_vals['shipment_address'] = address_id
-        sale_vals['untaxed_amount'] = untaxed
-        sale_vals['tax_amount'] = tax
-        sale_vals['total_amount'] = total
+        sale.shipment_address = None
 
         context = {}
-        context['record'] = sale_vals # Eval by "carrier formula" require "record"
+        context['record'] = sale # Eval by "carrier formula" require "record"
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
         carriers = []
