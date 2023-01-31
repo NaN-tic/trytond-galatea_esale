@@ -36,6 +36,7 @@ class Sale(metaclass=PoolMeta):
         sale.party = party
         sale.payment_type = (PaymentType(payment)
             if isinstance(payment, int) else payment)
+
         if address_id:
             sale.shipment_address = (Address(address_id)
                 if isinstance(address_id, int) else address_id)
@@ -48,7 +49,11 @@ class Sale(metaclass=PoolMeta):
 
         available_carriers_ids = sale.on_change_with_available_carriers()
 
-        sale_vals = sale._save_values
+        sale_vals = {}
+        sale_vals['party'] = party.id
+        sale_vals['payment_type'] = payment
+        sale_vals['carrier'] = None
+        sale_vals['shipment_address'] = address_id
         sale_vals['untaxed_amount'] = untaxed
         sale_vals['tax_amount'] = tax
         sale_vals['total_amount'] = total
