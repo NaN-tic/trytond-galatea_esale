@@ -24,6 +24,33 @@ class Sale(metaclass=PoolMeta):
         return []
 
     @classmethod
+    def _esale_carriers_sale(cls, shop, party=None, untaxed=0, tax=0, total=0,
+            payment=None, address_id=None, zip=None, country=None):
+        pool = Pool()
+        PaymentType = pool.get('account.payment.type')
+        Address = pool.get('party.address')
+
+        sale = cls()
+        sale.party = party
+        sale.untaxed_amount = untaxed
+        sale.tax_amount = tax
+        sale.total_amount = total
+        sale.payment_type = (PaymentType(payment)
+            if isinstance(payment, int) else payment)
+
+        if address_id:
+            sale.shipment_address = (Address(address_id)
+                if isinstance(address_id, int) else address_id)
+        else:
+            shipment_address = Address()
+            shipment_address.zip = zip
+            shipment_address.country = country
+            sale.shipment_address = shipment_address
+        sale.carrier = None
+
+        return sale
+
+    @classmethod
     def _esale_carriers_pattern(cls, party=None, address_id=None, zip=None,
             country=None):
         pool = Pool()
@@ -50,27 +77,10 @@ class Sale(metaclass=PoolMeta):
             payment=None, address_id=None, zip=None, country=None):
         '''Available eSale Carriers'''
         pool = Pool()
-        PaymentType = pool.get('account.payment.type')
         CarrierSelection = pool.get('carrier.selection')
-        Address = pool.get('party.address')
 
-        sale = cls()
-        sale.party = party
-        sale.untaxed_amount = untaxed
-        sale.tax_amount = tax
-        sale.total_amount = total
-        sale.payment_type = (PaymentType(payment)
-            if isinstance(payment, int) else payment)
-
-        if address_id:
-            sale.shipment_address = (Address(address_id)
-                if isinstance(address_id, int) else address_id)
-        else:
-            shipment_address = Address()
-            shipment_address.zip = zip
-            shipment_address.country = country
-            sale.shipment_address = shipment_address
-        sale.carrier = None
+        sale = cls._esale_carriers_sale(shop, party, untaxed, tax, total,
+            payment, address_id, zip, country)
 
         available_carriers_ids = sale.on_change_with_available_carriers()
         sale.shipment_address = None
