@@ -24,16 +24,17 @@ class Sale(metaclass=PoolMeta):
         return []
 
     @classmethod
-    def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
+    def _esale_carriers_sale(cls, shop, party=None, untaxed=0, tax=0, total=0,
             payment=None, address_id=None, postal_code=None, country=None):
-        '''Available eSale Carriers'''
         pool = Pool()
         PaymentType = pool.get('account.payment.type')
-        CarrierSelection = pool.get('carrier.selection')
         Address = pool.get('party.address')
 
         sale = cls()
         sale.party = party
+        sale.untaxed_amount = untaxed
+        sale.tax_amount = tax
+        sale.total_amount = total
         sale.payment_type = (PaymentType(payment)
             if isinstance(payment, int) else payment)
 
@@ -47,21 +48,45 @@ class Sale(metaclass=PoolMeta):
             sale.shipment_address = shipment_address
         sale.carrier = None
 
-        available_carriers_ids = sale.on_change_with_available_carriers()
+        return sale
 
-        sale_vals = {}
-        sale_vals['party'] = party.id if party else None
-        sale_vals['payment_type'] = payment
-        sale_vals['carrier'] = None
-        sale_vals['shipment_address'] = address_id
-        sale_vals['untaxed_amount'] = untaxed
-        sale_vals['tax_amount'] = tax
-        sale_vals['total_amount'] = total
+    @classmethod
+    def _esale_carriers_pattern(cls, party=None, address_id=None, postal_code=None,
+            country=None):
+        pool = Pool()
+        Address = pool.get('party.address')
+
+        pattern = {}
+        if address_id and party:
+            addresses = Address.search([
+                ('party', '=', party),
+                ('id', '=', address_id),
+                ], limit=1)
+            if addresses:
+                address, = addresses
+                postal_code = address.postal_code
+                country = address.country.id if address.country else None
+        if postal_code:
+            pattern['shipment_postal_code'] = postal_code
+        if country:
+            pattern['to_country'] = country
+        return pattern
+
+    @classmethod
+    def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
+            payment=None, address_id=None, postal_code=None, country=None):
+        '''Available eSale Carriers'''
+        pool = Pool()
+        CarrierSelection = pool.get('carrier.selection')
+
+        sale = cls._esale_carriers_sale(shop, party, untaxed, tax, total,
+            payment, address_id, postal_code, country)
+
+        available_carriers_ids = sale.on_change_with_available_carriers()
+        sale.shipment_address = None
 
         context = {}
-        context['record'] = sale_vals # Eval by "carrier formula", require "record"
-        context['record_model'] = 'sale.sale'
-
+        context['record'] = sale # Eval by "carrier formula" require "record"
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
         carriers = []
@@ -83,22 +108,7 @@ class Sale(metaclass=PoolMeta):
                 'price_w_tax': Decimal(decimals % price_w_tax),
                 })
 
-        if address_id or postal_code or country:
-            pattern = {}
-            if address_id and party:
-                addresses = Address.search([
-                    ('party', '=', party),
-                    ('id', '=', address_id),
-                    ], limit=1)
-                if addresses:
-                    address, = addresses
-                    postal_code = address.postal_code
-                    country = address.country.id if address.country else None
-            if postal_code:
-                pattern['shipment_postal_code'] = postal_code
-            if country:
-                pattern['to_country'] = country
-
+            pattern = cls._esale_carriers_pattern(party, address_id, postal_code, country)
             postal_code_carriers = CarrierSelection.get_carriers(pattern)
             if postal_code_carriers:
                 for c in carriers[:]:
