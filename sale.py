@@ -85,8 +85,22 @@ class Sale(metaclass=PoolMeta):
         available_carriers_ids = sale.on_change_with_available_carriers()
         sale.shipment_address = None
 
+        def _values(sale):
+            values = {}
+            if not sale._values:
+                return values
+            for fname, value in sale._values._items():
+                field = sale._fields[fname]
+                if isinstance(field, fields.Function):
+                    continue
+                if field._type in ('many2one', 'one2one', 'reference',
+                        'one2many', 'many2many'):
+                    continue
+                values[fname] = value
+            return values
+
         context = {}
-        context['record'] = sale # Eval by "carrier formula" require "record"
+        context['record'] = _values(sale) # Eval by "carrier formula" require "record"
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
         carriers = []
