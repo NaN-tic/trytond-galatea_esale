@@ -24,12 +24,10 @@ class Sale(metaclass=PoolMeta):
         return []
 
     @classmethod
-    def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
+    def _esale_carriers_sale(cls, shop, party=None, untaxed=0, tax=0, total=0,
             payment=None, address_id=None, zip=None, country=None):
-        '''Available eSale Carriers'''
         pool = Pool()
         PaymentType = pool.get('account.payment.type')
-        CarrierSelection = pool.get('carrier.selection')
         Address = pool.get('party.address')
 
         sale = cls()
@@ -49,6 +47,40 @@ class Sale(metaclass=PoolMeta):
             shipment_address.country = country
             sale.shipment_address = shipment_address
         sale.carrier = None
+
+        return sale
+
+    @classmethod
+    def _esale_carriers_pattern(cls, party=None, address_id=None, zip=None,
+            country=None):
+        pool = Pool()
+        Address = pool.get('party.address')
+
+        pattern = {}
+        if address_id and party:
+            addresses = Address.search([
+                ('party', '=', party),
+                ('id', '=', address_id),
+                ], limit=1)
+            if addresses:
+                address, = addresses
+                zip = address.zip
+                country = address.country.id if address.country else None
+        if zip:
+            pattern['shipment_zip'] = zip
+        if country:
+            pattern['to_country'] = country
+        return pattern
+
+    @classmethod
+    def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
+            payment=None, address_id=None, zip=None, country=None):
+        '''Available eSale Carriers'''
+        pool = Pool()
+        CarrierSelection = pool.get('carrier.selection')
+
+        sale = cls._esale_carriers_sale(shop, party, untaxed, tax, total,
+            payment, address_id, zip, country)
 
         available_carriers_ids = sale.on_change_with_available_carriers()
         sale.shipment_address = None
@@ -76,22 +108,7 @@ class Sale(metaclass=PoolMeta):
                 'price_w_tax': Decimal(decimals % price_w_tax),
                 })
 
-        if address_id or zip or country:
-            pattern = {}
-            if address_id and party:
-                addresses = Address.search([
-                    ('party', '=', party),
-                    ('id', '=', address_id),
-                    ], limit=1)
-                if addresses:
-                    address, = addresses
-                    zip = address.zip
-                    country = address.country.id if address.country else None
-            if zip:
-                pattern['shipment_zip'] = zip
-            if country:
-                pattern['to_country'] = country
-
+            pattern = cls._esale_carriers_pattern(party, address_id, zip, country)
             zip_carriers = CarrierSelection.get_carriers(pattern)
             if zip_carriers:
                 for c in carriers[:]:
