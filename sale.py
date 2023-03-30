@@ -73,6 +73,10 @@ class Sale(metaclass=PoolMeta):
         return pattern
 
     @classmethod
+    def shop_esale_carriers(cls, shop, sale):
+        return [ecarrier.carrier for ecarrier in shop.esale_carriers]
+
+    @classmethod
     def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
             payment=None, address_id=None, zip=None, country=None):
         '''Available eSale Carriers'''
@@ -90,8 +94,7 @@ class Sale(metaclass=PoolMeta):
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
         carriers = []
-        for ecarrier in shop.esale_carriers:
-            carrier = ecarrier.carrier
+        for carrier in cls.shop_esale_carriers(shop, sale):
             if carrier.id not in available_carriers_ids:
                 continue
             context['carrier'] = carrier
