@@ -93,10 +93,14 @@ class Sale(metaclass=PoolMeta):
         context['record'] = sale # Eval by "carrier formula" require "record"
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
+        pattern = cls._esale_carriers_pattern(party, address_id, zip, country)
+        zip_carriers = CarrierSelection.get_carriers(pattern)
+
         carriers = []
         for carrier in cls.shop_esale_carriers(shop, sale):
-            if carrier.id not in available_carriers_ids:
+            if ((carrier.id not in available_carriers_ids) or (carrier not in zip_carriers)):
                 continue
+
             context['carrier'] = carrier
             with Transaction().set_context(context):
                 carrier_price = carrier.get_sale_price() # return price, currency
@@ -110,13 +114,6 @@ class Sale(metaclass=PoolMeta):
                 'price': Decimal(decimals % price),
                 'price_w_tax': Decimal(decimals % price_w_tax),
                 })
-
-            pattern = cls._esale_carriers_pattern(party, address_id, zip, country)
-            zip_carriers = CarrierSelection.get_carriers(pattern)
-            if zip_carriers:
-                for c in carriers[:]:
-                    if c['carrier'] not in zip_carriers:
-                        carriers.remove(c)
 
         # sort carriers by price field
         return sorted(carriers, key=lambda k: k['price'])
