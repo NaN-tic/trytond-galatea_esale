@@ -91,16 +91,12 @@ class Sale(metaclass=PoolMeta):
                 return values
             for fname, value in sale._values._items():
                 field = sale._fields[fname]
-                if isinstance(field, fields.Function):
-                    continue
-                if field._type in ('many2one', 'one2one', 'reference',
-                        'one2many', 'many2many'):
-                    continue
                 values[fname] = value
             return values
 
         context = {}
         context['record'] = _values(sale) # Eval by "carrier formula" require "record"
+        context['record_model'] = 'sale.sale'
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
         carriers = []
