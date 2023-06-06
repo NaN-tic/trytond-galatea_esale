@@ -73,6 +73,10 @@ class Sale(metaclass=PoolMeta):
         return pattern
 
     @classmethod
+    def shop_esale_carriers(cls, shop, sale):
+        return [ecarrier.carrier for ecarrier in shop.esale_carriers]
+
+    @classmethod
     def get_esale_carriers(cls, shop, party=None, untaxed=0, tax=0, total=0,
             payment=None, address_id=None, postal_code=None, country=None):
         '''Available eSale Carriers'''
@@ -90,7 +94,6 @@ class Sale(metaclass=PoolMeta):
             if not sale._values:
                 return values
             for fname, value in sale._values._items():
-                field = sale._fields[fname]
                 values[fname] = value
             return values
 
@@ -99,11 +102,14 @@ class Sale(metaclass=PoolMeta):
         context['record_model'] = 'sale.sale'
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
+        pattern = cls._esale_carriers_pattern(party, address_id, postal_code, country)
+        zip_carriers = CarrierSelection.get_carriers(pattern)
+
         carriers = []
-        for ecarrier in shop.esale_carriers:
-            carrier = ecarrier.carrier
-            if carrier.id not in available_carriers_ids:
+        for carrier in cls.shop_esale_carriers(shop, sale):
+            if ((carrier.id not in available_carriers_ids) or (carrier not in zip_carriers)):
                 continue
+
             context['carrier'] = str(carrier)
             with Transaction().set_context(context):
                 carrier_price = carrier.get_sale_price() # return price, currency
@@ -117,13 +123,6 @@ class Sale(metaclass=PoolMeta):
                 'price': Decimal(decimals % price),
                 'price_w_tax': Decimal(decimals % price_w_tax),
                 })
-
-            pattern = cls._esale_carriers_pattern(party, address_id, postal_code, country)
-            postal_code_carriers = CarrierSelection.get_carriers(pattern)
-            if postal_code_carriers:
-                for c in carriers[:]:
-                    if c['carrier'] not in postal_code_carriers:
-                        carriers.remove(c)
 
         # sort carriers by price field
         return sorted(carriers, key=lambda k: k['price'])
