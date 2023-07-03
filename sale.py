@@ -86,7 +86,7 @@ class Sale(metaclass=PoolMeta):
         sale = cls._esale_carriers_sale(shop, party, untaxed, tax, total,
             payment, address_id, postal_code, country)
 
-        available_carriers_ids = sale.on_change_with_available_carriers()
+        available_carriers_ids = [c.id for c in sale.on_change_with_available_carriers()]
         sale.shipment_address = None
 
         def _values(sale):
@@ -123,7 +123,6 @@ class Sale(metaclass=PoolMeta):
                 'price': Decimal(decimals % price),
                 'price_w_tax': Decimal(decimals % price_w_tax),
                 })
-
         # sort carriers by price field
         return sorted(carriers, key=lambda k: k['price'])
 
