@@ -34,7 +34,7 @@ class GalateaWebSite(metaclass=PoolMeta):
                 'Catalog Category Menu', domain=[
                     ('esale_active', '=', True),
                 ], context={
-                    'company': Eval('company'),
+                    'company': Eval('company', -1),
                 }, depends=['company'],
                 help='Main menu of catalog category')
 
