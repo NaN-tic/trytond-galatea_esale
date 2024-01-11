@@ -13,5 +13,4 @@ class PaymentType(metaclass=PoolMeta):
     esale_payment = fields.Boolean('Virtual Payment')
     esale_code = fields.Char('Code App Payment', states={
             'required': Eval('esale_payment', False),
-            },
-        depends=['esale_payment'])
+            })

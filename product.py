@@ -75,8 +75,7 @@ class Template(metaclass=PoolMeta):
         states={
             'readonly': ~Eval('active', True),
             'required': Eval('esale_available', False),
-            },
-        depends=['active', 'esale_available'])
+            })
 
     @classmethod
     def __setup__(cls):
@@ -113,8 +112,7 @@ class Product(metaclass=PoolMeta):
     __name__ = 'product.product'
     add_cart = fields.Boolean('Add Cart', states={
             'readonly': ~Eval('active', True),
-            }, depends=['active'],
-            help='Available to add cart')
+            }, help='Available to add cart')
 
     @staticmethod
     def default_add_cart():

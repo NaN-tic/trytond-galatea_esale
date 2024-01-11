@@ -52,7 +52,7 @@ class GalateaUser(metaclass=PoolMeta):
             ('invoice', '=', True),
         ], states={
             'required': ~Eval('display_invoice_address', True),
-        }, depends=['party', 'display_invoice_address'], help='Default Invoice Address')
+        }, help='Default Invoice Address')
     display_invoice_address = fields.Boolean('Display All Invoice Address')
     shipment_address = fields.Many2One('party.address', 'Shipment Address',
         domain=[
@@ -60,7 +60,7 @@ class GalateaUser(metaclass=PoolMeta):
             ('delivery', '=', True),
         ], states={
             'required': ~Eval('display_shipment_address', True),
-        }, depends=['party'], help='Default Shipment Address')
+        }, help='Default Shipment Address')
     display_shipment_address = fields.Boolean('Display All Shipment Address')
     b2b = fields.Boolean('B2B',
         help='Allow views or data from B2B customers')
