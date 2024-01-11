@@ -29,6 +29,7 @@ class Sale(metaclass=PoolMeta):
         pool = Pool()
         PaymentType = pool.get('account.payment.type')
         Address = pool.get('party.address')
+        Country = pool.get('country.country')
 
         sale = cls()
         sale.party = party
@@ -44,7 +45,8 @@ class Sale(metaclass=PoolMeta):
         else:
             shipment_address = Address()
             shipment_address.postal_code = postal_code
-            shipment_address.country = country
+            shipment_address.country = (Country(country)
+                if isinstance(country, int) else country)
             sale.shipment_address = shipment_address
         sale.carrier = None
 
