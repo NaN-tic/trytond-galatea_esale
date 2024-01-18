@@ -84,21 +84,28 @@ class GalateaUser(metaclass=PoolMeta):
         Shop = pool.get('sale.shop')
         Sale = pool.get('sale.sale')
         SaleLine = pool.get('sale.line')
+        Company = pool.get('company.company')
 
         if user and not isinstance(user, User):
             user = User(user)
 
+        company = (website and website.company
+                    or Company(Transaction().context.get('company', -1)))
+
         context = {}
         if user:
             context['customer'] = user.party.id
+
+        sale_price_list = None
         if user and user.party.sale_price_list:
-            context['price_list'] = user.party.sale_price_list.id
+            sale_price_list = user.party.sale_price_list
         else:
             shop = Transaction().context.get('shop')
             if shop:
                 shop = Shop(shop)
-                context['price_list'] = (shop.price_list.id
-                    if shop.price_list else None)
+                sale_price_list = shop.price_list
+        if sale_price_list and sale_price_list.company.id == company.id:
+            context['price_list'] = sale_price_list.id
 
         to_save = []
         with Transaction().set_context(**context):
