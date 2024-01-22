@@ -118,6 +118,7 @@ class GalateaUser(metaclass=PoolMeta):
             # not filter by shop. Update all current carts
             domain = [
                 ('sale', '=', None),
+                ('company', '=', company.id),
                 ]
             if user: # login user. Filter sid or user
                 domain.append(['OR',
