@@ -24,7 +24,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
 
         <!-- Access -->
         <record model="ir.model.access" id="access_galatea_sale">
-            <field name="model" search="[('model', '=', 'sale.sale')]"/>
+            <field name="model">sale.sale</field>
             <field name="group" ref="galatea.group_galatea"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -32,7 +32,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_galatea_sale_line">
-            <field name="model" search="[('model', '=', 'sale.line')]"/>
+            <field name="model">sale.line</field>
             <field name="group" ref="galatea.group_galatea"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -45,7 +45,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         </record>
 
         <record model="ir.model.access" id="access_galatea_invoice">
-            <field name="model" search="[('model', '=', 'account.invoice')]"/>
+            <field name="model">account.invoice</field>
             <field name="group" ref="galatea.group_galatea"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -53,7 +53,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_galatea_invoice_line">
-            <field name="model" search="[('model', '=', 'account.invoice.line')]"/>
+            <field name="model">account.invoice.line</field>
             <field name="group" ref="galatea.group_galatea"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -62,7 +62,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         </record>
 
         <record model="ir.model.access" id="access_galatea_stock_shipment_out">
-            <field name="model" search="[('model', '=', 'stock.shipment.out')]"/>
+            <field name="model">stock.shipment.out</field>
             <field name="group" ref="galatea.group_galatea"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -70,7 +70,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_galatea_stock_shipment_out_return">
-            <field name="model" search="[('model', '=', 'stock.shipment.out.return')]"/>
+            <field name="model">stock.shipment.out.return</field>
             <field name="group" ref="galatea.group_galatea"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -78,7 +78,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_galatea_stock_move">
-            <field name="model" search="[('model', '=', 'stock.move')]"/>
+            <field name="model">stock.move</field>
             <field name="group" ref="galatea.group_galatea"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
