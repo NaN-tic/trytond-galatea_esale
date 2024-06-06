@@ -88,7 +88,7 @@ class Sale(metaclass=PoolMeta):
         sale = cls._esale_carriers_sale(shop, party, untaxed, tax, total,
             payment, address_id, postal_code, country)
 
-        available_carriers_ids = [
+        available_carriers = [
             c for c in sale.on_change_with_available_carriers()]
         sale.shipment_address = None
 
@@ -110,7 +110,7 @@ class Sale(metaclass=PoolMeta):
 
         carriers = []
         for carrier in cls.shop_esale_carriers(shop, sale):
-            if ((carrier.id not in available_carriers_ids) or (carrier not in zip_carriers)):
+            if ((carrier not in available_carriers) or (carrier not in zip_carriers)):
                 continue
 
             context['carrier'] = str(carrier)
