@@ -54,7 +54,7 @@ class Sale(metaclass=PoolMeta):
 
     @classmethod
     def _esale_carriers_pattern(cls, party=None, address_id=None, postal_code=None,
-            country=None):
+            country_id=None):
         pool = Pool()
         Address = pool.get('party.address')
 
@@ -67,11 +67,11 @@ class Sale(metaclass=PoolMeta):
             if addresses:
                 address, = addresses
                 postal_code = address.postal_code
-                country = address.country.id if address.country else None
+                country_id = address.country.id if address.country else None
         if postal_code:
             pattern['shipment_postal_code'] = postal_code
-        if country:
-            pattern['to_country'] = country
+        if country_id:
+            pattern['to_country'] = country_id
         return pattern
 
     @classmethod
@@ -105,7 +105,8 @@ class Sale(metaclass=PoolMeta):
         context['record_model'] = 'sale.sale'
         decimals = "%0."+str(shop.currency.digits)+"f" # "%0.2f" euro
 
-        pattern = cls._esale_carriers_pattern(party, address_id, postal_code, country)
+        country_id = country and country.id or None
+        pattern = cls._esale_carriers_pattern(party, address_id, postal_code, country_id)
         zip_carriers = CarrierSelection.get_carriers(pattern)
 
         carriers = []
