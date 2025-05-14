@@ -73,7 +73,6 @@ class Template(metaclass=PoolMeta):
     esale_global_price = fields.Numeric('eSale Global Price',
         digits=(16, DIGITS),
         states={
-            'readonly': ~Eval('active', True),
             'required': Eval('esale_available', False),
             })
 
@@ -110,9 +109,7 @@ class Template(metaclass=PoolMeta):
 
 class Product(metaclass=PoolMeta):
     __name__ = 'product.product'
-    add_cart = fields.Boolean('Add Cart', states={
-            'readonly': ~Eval('active', True),
-            }, help='Available to add cart')
+    add_cart = fields.Boolean('Add Cart', help='Available to add cart')
 
     @staticmethod
     def default_add_cart():
