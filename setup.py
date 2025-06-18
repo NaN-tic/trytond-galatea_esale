@@ -10,12 +10,12 @@ from configparser import ConfigParser
 MODULE = 'galatea_esale'
 PREFIX = 'nantic'
 MODULE2PREFIX = {
-    'account_payment_type',
-    'galatea',
-    'esale',
-    'product_esale',
-    'sale_line_standalone',
-    'sale_w_tax',
+    'account_payment_type': 'nantic',
+    'galatea': 'nantic',
+    'esale': 'nantic',
+    'product_esale': 'nantic',
+    'sale_line_standalone': 'nantic',
+    'sale_w_tax': 'nantic',
 }
 
 
@@ -84,7 +84,7 @@ setup(name='%s_%s' % (PREFIX, MODULE),
         ],
     package_data={
         'trytond.modules.%s' % MODULE: (info.get('xml', [])
-            + ['tryton.cfg', 'locale/*.po', 'tests/*.rst']),
+            + ['tryton.cfg', 'view/*.xml', 'locale/*.po', 'tests/*.rst']),
         },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
