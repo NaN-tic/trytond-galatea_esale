@@ -96,6 +96,17 @@ class Template(metaclass=PoolMeta):
         if self.list_price:
             return self.list_price
 
+    @classmethod
+    def get_esale_price(cls, templates, names):
+        result = super().get_esale_price(templates, names)
+        if Transaction().context.get('without_special_price') is False:
+            return result
+        for template in templates:
+            if template.esale_global_price is not None:
+                for name in names:
+                    result[name][template.id] = template.esale_global_price
+        return result
+
     def esale_menus_by_website(self, website):
         Category = Pool().get('product.category')
 
