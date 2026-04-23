@@ -122,12 +122,12 @@ class GalateaUser(metaclass=PoolMeta):
                 ]
             if user: # login user. Filter sid or user
                 domain.append(['OR',
-                    ('sid', '=', session.sid),
+                    ('sid', '=', session.get('sid')),
                     ('galatea_user', '=', user),
                     ])
             else: # anonymous user. Filter sid
                 domain.append(
-                    ('sid', '=', session.sid),
+                    ('sid', '=', session.get('sid')),
                     )
             lines = SaleLine.search(domain)
 
