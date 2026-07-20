@@ -6,8 +6,7 @@ from trytond.model import fields, ModelSQL
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
-from trytond.config import config as config_
-
+import trytond.config as config_
 __all__ = ['Category', 'ProductCategoryGalateaWebsite', 'Template', 'Product']
 
 DIGITS = config_.getint('product', 'price_decimal', default=4)
