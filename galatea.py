@@ -132,6 +132,8 @@ class GalateaUser(metaclass=PoolMeta):
             lines = SaleLine.search(domain)
 
             for line in lines:
+                if not line.product:
+                    continue
                 # sure reload the product according to context (taxes)...
                 product = Product(line.product.id)
                 line.product = product
