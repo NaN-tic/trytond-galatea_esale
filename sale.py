@@ -57,6 +57,7 @@ class Sale(metaclass=PoolMeta):
             country_id=None):
         pool = Pool()
         Address = pool.get('party.address')
+        CarrierSelection = pool.get('carrier.selection')
 
         pattern = {}
         if address_id and party:
@@ -68,7 +69,8 @@ class Sale(metaclass=PoolMeta):
                 address, = addresses
                 postal_code = address.postal_code
                 country_id = address.country.id if address.country else None
-        if postal_code:
+        # carrier_zip handles this key outside the standard field matching.
+        if postal_code and 'start_postal_code' in CarrierSelection._fields:
             pattern['shipment_postal_code'] = postal_code
         if country_id:
             pattern['to_country'] = country_id
