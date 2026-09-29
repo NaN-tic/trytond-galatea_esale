@@ -109,7 +109,10 @@ class GalateaUser(metaclass=PoolMeta):
 
         to_save = []
         with Transaction().set_context(**context):
-            default_values = Sale.default_get(Sale._fields.keys(),
+            default_values = Sale.default_get([
+                    name for name, field in Sale._fields.items()
+                    if not field.readonly
+                    ],
                 with_rec_name=False)
             sale = Sale(**default_values)
             sale.party = user.party
